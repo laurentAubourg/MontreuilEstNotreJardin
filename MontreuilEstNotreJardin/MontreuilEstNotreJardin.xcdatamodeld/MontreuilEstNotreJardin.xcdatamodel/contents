@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21D5025f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class"/>
+    <entity name="Poi" representedClassName="Poi" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="Category" positionX="-63" positionY="-18" width="128" height="29"/>
+        <element name="Poi" positionX="-54" positionY="-9" width="128" height="29"/>
+    </elements>
+</model>

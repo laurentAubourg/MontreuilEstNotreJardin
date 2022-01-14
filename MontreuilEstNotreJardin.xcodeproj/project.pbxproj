@@ -1,0 +1,740 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FBE2791A04700AA9D1E /* AppDelegate.swift */; };
+		56890FC12791A04700AA9D1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FC02791A04700AA9D1E /* SceneDelegate.swift */; };
+		56890FC62791A04700AA9D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56890FC42791A04700AA9D1E /* Main.storyboard */; };
+		56890FCB2791A04800AA9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56890FCA2791A04800AA9D1E /* Assets.xcassets */; };
+		56890FCE2791A04800AA9D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */; };
+		56890FD92791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */; };
+		56890FE32791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */; };
+		56890FE52791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */; };
+		568910092791A18C00AA9D1E /* MontreuilIsMyGardenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */; };
+		5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF52791A18C00AA9D1E /* coreDataManager.swift */; };
+		5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF62791A18C00AA9D1E /* CoreDataStack.swift */; };
+		5689100D2791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */; };
+		5689100E2791A18C00AA9D1E /* mapTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */; };
+		5689100F2791A18C00AA9D1E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */; };
+		568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */; };
+		568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */; };
+		568910122791A18C00AA9D1E /* URLSession+GenericCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */; };
+		568910132791A18C00AA9D1E /* UIView+border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910002791A18C00AA9D1E /* UIView+border.swift */; };
+		568910142791A18C00AA9D1E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910012791A18C00AA9D1E /* StringExtension.swift */; };
+		568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */; };
+		568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910032791A18C00AA9D1E /* tableViewExtension.swift */; };
+		568910172791A18C00AA9D1E /* jardinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910052791A18C00AA9D1E /* jardinsViewController.swift */; };
+		568910182791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56890FD52791A04800AA9D1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56890FB32791A04700AA9D1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56890FBA2791A04700AA9D1E;
+			remoteInfo = MontreuilEstNotreJardin;
+		};
+		56890FDF2791A04800AA9D1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56890FB32791A04700AA9D1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56890FBA2791A04700AA9D1E;
+			remoteInfo = MontreuilEstNotreJardin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		56890FBB2791A04700AA9D1E /* MontreuilEstNotreJardin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontreuilEstNotreJardin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56890FBE2791A04700AA9D1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		56890FC02791A04700AA9D1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		56890FC52791A04700AA9D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		56890FCA2791A04800AA9D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		56890FCD2791A04800AA9D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		56890FCF2791A04800AA9D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MontreuilEstNotreJardinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinTests.swift; sourceTree = "<group>"; };
+		56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MontreuilEstNotreJardinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITests.swift; sourceTree = "<group>"; };
+		56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MontreuilIsMyGardenService.swift; sourceTree = "<group>"; };
+		56890FF52791A18C00AA9D1E /* coreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = coreDataManager.swift; sourceTree = "<group>"; };
+		56890FF62791A18C00AA9D1E /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MontreuilEstNotreJardin.xcdatamodel; sourceTree = "<group>"; };
+		56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mapTest.xcdatamodel; sourceTree = "<group>"; };
+		56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlBuildable.swift; sourceTree = "<group>"; };
+		56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+GenericCall.swift"; sourceTree = "<group>"; };
+		568910002791A18C00AA9D1E /* UIView+border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+border.swift"; sourceTree = "<group>"; };
+		568910012791A18C00AA9D1E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlSessionCancelable.swift; sourceTree = "<group>"; };
+		568910032791A18C00AA9D1E /* tableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewExtension.swift; sourceTree = "<group>"; };
+		568910052791A18C00AA9D1E /* jardinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jardinsViewController.swift; sourceTree = "<group>"; };
+		568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MontreuilIsMyGardenViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		56890FB82791A04700AA9D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FD12791A04800AA9D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FDB2791A04800AA9D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		56890FB22791A04700AA9D1E = {
+			isa = PBXGroup;
+			children = (
+				56890FBD2791A04700AA9D1E /* MontreuilEstNotreJardin */,
+				56890FD72791A04800AA9D1E /* MontreuilEstNotreJardinTests */,
+				56890FE12791A04800AA9D1E /* MontreuilEstNotreJardinUITests */,
+				56890FBC2791A04700AA9D1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		56890FBC2791A04700AA9D1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				56890FBB2791A04700AA9D1E /* MontreuilEstNotreJardin.app */,
+				56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */,
+				56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		56890FBD2791A04700AA9D1E /* MontreuilEstNotreJardin */ = {
+			isa = PBXGroup;
+			children = (
+				568910042791A18C00AA9D1E /* controllers */,
+				56890FFB2791A18C00AA9D1E /* extensions */,
+				56890FF12791A18C00AA9D1E /* model */,
+				56890FBE2791A04700AA9D1E /* AppDelegate.swift */,
+				56890FC02791A04700AA9D1E /* SceneDelegate.swift */,
+				56890FC42791A04700AA9D1E /* Main.storyboard */,
+				56890FCA2791A04800AA9D1E /* Assets.xcassets */,
+				56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */,
+				56890FCF2791A04800AA9D1E /* Info.plist */,
+			);
+			path = MontreuilEstNotreJardin;
+			sourceTree = "<group>";
+		};
+		56890FD72791A04800AA9D1E /* MontreuilEstNotreJardinTests */ = {
+			isa = PBXGroup;
+			children = (
+				56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */,
+			);
+			path = MontreuilEstNotreJardinTests;
+			sourceTree = "<group>";
+		};
+		56890FE12791A04800AA9D1E /* MontreuilEstNotreJardinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */,
+				56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */,
+			);
+			path = MontreuilEstNotreJardinUITests;
+			sourceTree = "<group>";
+		};
+		56890FF12791A18C00AA9D1E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */,
+				56890FF42791A18C00AA9D1E /* coreData */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		56890FF42791A18C00AA9D1E /* coreData */ = {
+			isa = PBXGroup;
+			children = (
+				56890FF52791A18C00AA9D1E /* coreDataManager.swift */,
+				56890FF62791A18C00AA9D1E /* CoreDataStack.swift */,
+				56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */,
+				56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */,
+			);
+			path = coreData;
+			sourceTree = "<group>";
+		};
+		56890FFB2791A18C00AA9D1E /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */,
+				56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */,
+				56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */,
+				56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */,
+				568910002791A18C00AA9D1E /* UIView+border.swift */,
+				568910012791A18C00AA9D1E /* StringExtension.swift */,
+				568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */,
+				568910032791A18C00AA9D1E /* tableViewExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		568910042791A18C00AA9D1E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				568910052791A18C00AA9D1E /* jardinsViewController.swift */,
+				568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56890FE82791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardin" */;
+			buildPhases = (
+				56890FB72791A04700AA9D1E /* Sources */,
+				56890FB82791A04700AA9D1E /* Frameworks */,
+				56890FB92791A04700AA9D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MontreuilEstNotreJardin;
+			productName = MontreuilEstNotreJardin;
+			productReference = 56890FBB2791A04700AA9D1E /* MontreuilEstNotreJardin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		56890FD32791A04800AA9D1E /* MontreuilEstNotreJardinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56890FEB2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinTests" */;
+			buildPhases = (
+				56890FD02791A04800AA9D1E /* Sources */,
+				56890FD12791A04800AA9D1E /* Frameworks */,
+				56890FD22791A04800AA9D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56890FD62791A04800AA9D1E /* PBXTargetDependency */,
+			);
+			name = MontreuilEstNotreJardinTests;
+			productName = MontreuilEstNotreJardinTests;
+			productReference = 56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		56890FDD2791A04800AA9D1E /* MontreuilEstNotreJardinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56890FEE2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinUITests" */;
+			buildPhases = (
+				56890FDA2791A04800AA9D1E /* Sources */,
+				56890FDB2791A04800AA9D1E /* Frameworks */,
+				56890FDC2791A04800AA9D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56890FE02791A04800AA9D1E /* PBXTargetDependency */,
+			);
+			name = MontreuilEstNotreJardinUITests;
+			productName = MontreuilEstNotreJardinUITests;
+			productReference = 56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		56890FB32791A04700AA9D1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					56890FBA2791A04700AA9D1E = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					56890FD32791A04800AA9D1E = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 56890FBA2791A04700AA9D1E;
+					};
+					56890FDD2791A04800AA9D1E = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 56890FBA2791A04700AA9D1E;
+					};
+				};
+			};
+			buildConfigurationList = 56890FB62791A04700AA9D1E /* Build configuration list for PBXProject "MontreuilEstNotreJardin" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 56890FB22791A04700AA9D1E;
+			productRefGroup = 56890FBC2791A04700AA9D1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */,
+				56890FD32791A04800AA9D1E /* MontreuilEstNotreJardinTests */,
+				56890FDD2791A04800AA9D1E /* MontreuilEstNotreJardinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		56890FB92791A04700AA9D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56890FCE2791A04800AA9D1E /* LaunchScreen.storyboard in Resources */,
+				56890FCB2791A04800AA9D1E /* Assets.xcassets in Resources */,
+				56890FC62791A04700AA9D1E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FD22791A04800AA9D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FDC2791A04800AA9D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		56890FB72791A04700AA9D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				568910122791A18C00AA9D1E /* URLSession+GenericCall.swift in Sources */,
+				568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */,
+				568910142791A18C00AA9D1E /* StringExtension.swift in Sources */,
+				5689100F2791A18C00AA9D1E /* UIImageViewExtension.swift in Sources */,
+				5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */,
+				5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */,
+				568910182791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift in Sources */,
+				568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */,
+				568910172791A18C00AA9D1E /* jardinsViewController.swift in Sources */,
+				568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */,
+				568910132791A18C00AA9D1E /* UIView+border.swift in Sources */,
+				5689100E2791A18C00AA9D1E /* mapTest.xcdatamodeld in Sources */,
+				568910092791A18C00AA9D1E /* MontreuilIsMyGardenService.swift in Sources */,
+				56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */,
+				568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */,
+				56890FC12791A04700AA9D1E /* SceneDelegate.swift in Sources */,
+				5689100D2791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FD02791A04800AA9D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56890FD92791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56890FDA2791A04800AA9D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56890FE52791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift in Sources */,
+				56890FE32791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		56890FD62791A04800AA9D1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */;
+			targetProxy = 56890FD52791A04800AA9D1E /* PBXContainerItemProxy */;
+		};
+		56890FE02791A04800AA9D1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */;
+			targetProxy = 56890FDF2791A04800AA9D1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		56890FC42791A04700AA9D1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56890FC52791A04700AA9D1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56890FCD2791A04800AA9D1E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		56890FE62791A04800AA9D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		56890FE72791A04800AA9D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		56890FE92791A04800AA9D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MontreuilEstNotreJardin/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		56890FEA2791A04800AA9D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MontreuilEstNotreJardin/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		56890FEC2791A04800AA9D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MontreuilEstNotreJardin.app/MontreuilEstNotreJardin";
+			};
+			name = Debug;
+		};
+		56890FED2791A04800AA9D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MontreuilEstNotreJardin.app/MontreuilEstNotreJardin";
+			};
+			name = Release;
+		};
+		56890FEF2791A04800AA9D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MontreuilEstNotreJardin;
+			};
+			name = Debug;
+		};
+		56890FF02791A04800AA9D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MontreuilEstNotreJardin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56890FB62791A04700AA9D1E /* Build configuration list for PBXProject "MontreuilEstNotreJardin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56890FE62791A04800AA9D1E /* Debug */,
+				56890FE72791A04800AA9D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56890FE82791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56890FE92791A04800AA9D1E /* Debug */,
+				56890FEA2791A04800AA9D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56890FEB2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56890FEC2791A04800AA9D1E /* Debug */,
+				56890FED2791A04800AA9D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56890FEE2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56890FEF2791A04800AA9D1E /* Debug */,
+				56890FF02791A04800AA9D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */,
+			);
+			currentVersion = 56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */;
+			path = MontreuilEstNotreJardin.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */,
+			);
+			currentVersion = 56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */;
+			path = mapTest.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 56890FB32791A04700AA9D1E /* Project object */;
+}
