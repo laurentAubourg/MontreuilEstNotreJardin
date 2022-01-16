@@ -27,19 +27,28 @@ final class CoreDataManager {
         let request: NSFetchRequest<Genre> = Genre.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         request.returnsObjectsAsFaults = false
-        guard let ingredients = try? managedObjectContext.fetch(request) else {return [] }
-        return ingredients
+        guard let categories = try? managedObjectContext.fetch(request) else {return [] }
+        return categories
     }
-   
+    var pois: [Poi] {
+        let request: NSFetchRequest<Poi> = Poi.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.returnsObjectsAsFaults = false
+        guard let pois = try? managedObjectContext.fetch(request) else {return [] }
+        return pois
+    }
     
    
     
     // MARK: - Manage  Categories
     
-    func addCategorie(id:Int32,name: String,count:Int32) {
+    func addCategorie(name: String,count:Int32,state:String) {
         if(name.isBlank){return}
         let categorie = Genre(context: managedObjectContext)
         categorie.name = name
+        categorie.count = count
+        categorie.state = state
+       
         coreDataStack.saveContext()
         
     }
@@ -53,7 +62,50 @@ final class CoreDataManager {
         coreDataStack.saveContext()
         
     }
+    // MARK: - Manage  Point of Interest
     
+    func addPoi(categorie:Genre,pois:[records]) {
+        for pointData:records in pois{
+            guard pointData.record != nil else{continue}
+            let record:record = pointData.record!
+            var id:String
+            
+            var longitude:Double
+            var latitude:Double
+            var name:String
+            var adress: String
+            var telephon:String
+           if record.id != nil{
+                id = record.id!
+            }else{
+                id = ""
+            }
+            if record.fields != nil{
+                let fields = record.fields!
+                if fields.pointgeo != nil {
+                    let point = fields.pointgeo
+                    guard point?.longitude != nil else{
+
+                        continue
+                    }
+                    longitude = (point?.longitude)!
+                    guard point?.latitude != nil else{
+                        continue
+                      
+                    }
+                    latitude = (point?.latitude)!
+                   }
+                if (fields.telephon != nil){
+                    telephon = fields.telephon!
+                }
+                let Poi = Poi(
+            }else{
+                continue
+            }
+        }
+        
+        
+    }
   
 }
 

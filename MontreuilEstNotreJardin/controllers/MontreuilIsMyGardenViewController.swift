@@ -42,17 +42,16 @@ final class MontreuilIsMyGardenViewController: UIViewController {
                     for facet in data.facets{
                         if facet.name == "categorie" {
                             let categories = facet.facets
-                            var  idCategorie:Int32 = 0
                             for categorie in categories{
-                                idCategorie += 1
-                                self!.coreDataManager?.addCategorie(id:idCategorie,name: categorie.name, count: Int32(categorie.count))
-                               //self!.addPoi()
+                                print ("CATEGORIES => \(categorie.name)")
+                                self!.coreDataManager?.addCategorie(name: categorie.name, count: Int32(categorie.count),state:categorie.state)
                             }
                             
                         }
                         continue
                     }
                     
+                    self!.addPoi()
                     break
                 case .failure(let error):
                     self?.presentAlert("The facets download failed.:\(error)")
@@ -61,31 +60,24 @@ final class MontreuilIsMyGardenViewController: UIViewController {
         })
     }
     func addPoi(){
-        let categories = coreDataManager?.categories as [Genre?]
-        for categorie in categories{
-            service.getPoi(for: categorie?.name ?? "" ,  callback:{ result in
+        let categories = coreDataManager?.categories as [Genre]?
+        for categorie in categories!{
+            service.getPoi(for: categorie.name ?? "" ,  callback:{ result in
                 DispatchQueue.main.async { [weak self] in
                     switch result {
                     case .success( let data):
-                        /*    for poi in data.facets{
-                         let categories = facet.facets
-                         var  idCategorie:Int32 = 0
-                         for categorie in categories{
-                         idCategorie += 1
-                         self!.coreDataManager?.addCategorie(id:idCategorie,name: categorie.name, count: categorie.count)
-                         }
-                         self!.addPoi()
-                         }
-                         */
+                   //     print ("CATEGORIES => \(categorie)")
+                   //     print ("RECORDS => \(data.records)")
+                        self!.coreDataManager?.addPoi(categorie: categorie, pois: data.records)
                         break
                     case .failure(let error):
-                        self?.presentAlert("The facets download failed.:\(error)")
+                        self?.presentAlert("The Poi records download failed.:\(error)")
                     }
                 }
             })
             
         }
     }
-
+    
     
 }

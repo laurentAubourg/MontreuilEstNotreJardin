@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21D5025f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Genre" representedClassName="Genre" syncable="YES" codeGenerationType="class">
-        <attribute name="adress" optional="YES" attributeType="String"/>
         <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <relationship name="poi" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" inverseName="category" inverseEntity="Poi"/>
@@ -11,13 +9,15 @@
     <entity name="Poi" representedClassName="Poi" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="statut" optional="YES" attributeType="String"/>
+        <attribute name="telephon" optional="YES" attributeType="String"/>
         <attribute name="year" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Genre" inverseName="poi" inverseEntity="Genre"/>
     </entity>
     <elements>
-        <element name="Genre" positionX="-379.055419921875" positionY="-262.2313995361328" width="128" height="119"/>
-        <element name="Poi" positionX="0" positionY="72" width="128" height="119"/>
+        <element name="Genre" positionX="-379.055419921875" positionY="-262.2313995361328" width="128" height="89"/>
+        <element name="Poi" positionX="0" positionY="72" width="128" height="149"/>
     </elements>
 </model>

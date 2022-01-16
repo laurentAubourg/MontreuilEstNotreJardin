@@ -127,15 +127,11 @@
 		56890FBD2791A04700AA9D1E /* MontreuilEstNotreJardin */ = {
 			isa = PBXGroup;
 			children = (
-				568910042791A18C00AA9D1E /* controllers */,
 				56890FFB2791A18C00AA9D1E /* extensions */,
 				56890FF12791A18C00AA9D1E /* model */,
-				56890FBE2791A04700AA9D1E /* AppDelegate.swift */,
-				56890FC02791A04700AA9D1E /* SceneDelegate.swift */,
-				56890FC42791A04700AA9D1E /* Main.storyboard */,
-				56890FCA2791A04800AA9D1E /* Assets.xcassets */,
-				56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */,
-				56890FCF2791A04800AA9D1E /* Info.plist */,
+				5689101B2791B2F800AA9D1E /* supporting files */,
+				5689101A2791B28B00AA9D1E /* view */,
+				568910042791A18C00AA9D1E /* controllers */,
 			);
 			path = MontreuilEstNotreJardin;
 			sourceTree = "<group>";
@@ -199,6 +195,26 @@
 				568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		5689101A2791B28B00AA9D1E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				56890FCA2791A04800AA9D1E /* Assets.xcassets */,
+				56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */,
+				56890FC42791A04700AA9D1E /* Main.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		5689101B2791B2F800AA9D1E /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				56890FBE2791A04700AA9D1E /* AppDelegate.swift */,
+				56890FC02791A04700AA9D1E /* SceneDelegate.swift */,
+				56890FCF2791A04800AA9D1E /* Info.plist */,
+			);
+			path = "supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,7 +545,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MontreuilEstNotreJardin/Info.plist;
+				INFOPLIST_FILE = "MontreuilEstNotreJardin/supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -557,7 +573,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MontreuilEstNotreJardin/Info.plist;
+				INFOPLIST_FILE = "MontreuilEstNotreJardin/supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
