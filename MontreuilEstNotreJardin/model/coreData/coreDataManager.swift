@@ -38,7 +38,7 @@ final class CoreDataManager {
         return pois
     }
     
-   
+    
     
     // MARK: - Manage  Categories
     
@@ -48,7 +48,7 @@ final class CoreDataManager {
         categorie.name = name
         categorie.count = count
         categorie.state = state
-       
+        
         coreDataStack.saveContext()
         
     }
@@ -73,32 +73,51 @@ final class CoreDataManager {
             var longitude:Double
             var latitude:Double
             var name:String
-            var adress: String
+            var address: String
+            let email:String
             var telephon:String
-           if record.id != nil{
+            if record.id != nil{
                 id = record.id!
             }else{
                 id = ""
             }
             if record.fields != nil{
                 let fields = record.fields!
-                if fields.pointgeo != nil {
-                    let point = fields.pointgeo
-                    guard point?.longitude != nil else{
-
-                        continue
-                    }
-                    longitude = (point?.longitude)!
-                    guard point?.latitude != nil else{
-                        continue
-                      
-                    }
-                    latitude = (point?.latitude)!
-                   }
+                guard fields.name != nil else{
+                    continue
+                }
+                name = fields.name!
+                if fields.address != nil {
+                    address = fields.address!
+                }else{
+                    continue
+                }
+                if fields.email != nil {
+                    email = fields.email!
+                }else{
+                    continue
+                }
+                guard fields.pointgeo != nil else{continue}
+                let point = fields.pointgeo
+                
+                
                 if (fields.telephon != nil){
                     telephon = fields.telephon!
                 }
-                let Poi = Poi(
+                
+                
+                longitude = (point?.longitude)!
+                latitude = (point?.latitude)!
+                
+                
+                let poi = Poi(context: managedObjectContext)
+                poi.category = categorie
+                poi.id = id
+                poi.latitude = latitude
+                poi.longitude = longitude
+                poi.name = name
+                poi.email = email
+                coreDataStack.saveContext()
             }else{
                 continue
             }
@@ -106,7 +125,7 @@ final class CoreDataManager {
         
         
     }
-  
+    
 }
 
 

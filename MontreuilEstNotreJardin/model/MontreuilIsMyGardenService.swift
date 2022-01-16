@@ -96,7 +96,7 @@ struct field:Decodable{
         case state = "statut"
         case address = "adresse"
         case email
-        case telephon ="telephone"
+        case telephon = "telephone"
         case categorie
         case pointgeo
     }

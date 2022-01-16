@@ -69,6 +69,7 @@ final class MontreuilIsMyGardenViewController: UIViewController {
                    //     print ("CATEGORIES => \(categorie)")
                    //     print ("RECORDS => \(data.records)")
                         self!.coreDataManager?.addPoi(categorie: categorie, pois: data.records)
+                        let cat = self!.coreDataManager?.categories
                         break
                     case .failure(let error):
                         self?.presentAlert("The Poi records download failed.:\(error)")
