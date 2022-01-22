@@ -6,7 +6,7 @@
 //
 //
 import Foundation
-final class MontreuilIsMyGardenService:UrlSessionCancelable,UrlBuildable{
+final class DataSetService:UrlSessionCancelable,UrlBuildable{
     
     //MARK: - properties
     
@@ -37,7 +37,7 @@ final class MontreuilIsMyGardenService:UrlSessionCancelable,UrlBuildable{
     
     // MARK: - Request to the API - Retrieve POIs for a category
     
-    func getPoi(for categorie:String = "", callback: @escaping( Result<PoiResponse,NetworkError>)->Void) {
+    func getPoi(for categorie:String = "",nbRecords:Int, callback: @escaping( Result<PoiResponse,NetworkError>)->Void) {
         
         /*    let urlString =  "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/?refine=categorie:\(categorie)"
          
@@ -45,8 +45,8 @@ final class MontreuilIsMyGardenService:UrlSessionCancelable,UrlBuildable{
         
         
         let baseUrl:String = "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/"
-        let queryItem:[[String:String]] = [["name":"refine","value":"categorie:\(categorie)"]
-        ]
+        let queryItem:[[String:String]] = [["name":"refine","value":"categorie:\(categorie)"],
+                                            ["name":"rows","value":"100"]]
         guard let url = buildUrl(baseUrl:baseUrl, Items:queryItem)  else{return }
         print(url)
         session.dataTask(with: url, callback: callback)
@@ -58,9 +58,15 @@ final class MontreuilIsMyGardenService:UrlSessionCancelable,UrlBuildable{
 
 struct Facet: Decodable {
     let name: String
-    let count:Int
+    let nbRecords:Int
     let state:String
     let value:String
+    enum CodingKeys: String, CodingKey {
+        case name
+        case nbRecords = "count"
+        case state
+        case value
+    }
 }
 
 struct facets: Decodable {

@@ -15,7 +15,7 @@
 		56890FD92791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */; };
 		56890FE32791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */; };
 		56890FE52791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */; };
-		568910092791A18C00AA9D1E /* MontreuilIsMyGardenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */; };
+		568910092791A18C00AA9D1E /* DataSetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF22791A18C00AA9D1E /* DataSetService.swift */; };
 		5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF52791A18C00AA9D1E /* coreDataManager.swift */; };
 		5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF62791A18C00AA9D1E /* CoreDataStack.swift */; };
 		5689100D2791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */; };
@@ -28,8 +28,10 @@
 		568910142791A18C00AA9D1E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910012791A18C00AA9D1E /* StringExtension.swift */; };
 		568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */; };
 		568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910032791A18C00AA9D1E /* tableViewExtension.swift */; };
-		568910172791A18C00AA9D1E /* jardinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910052791A18C00AA9D1E /* jardinsViewController.swift */; };
-		568910182791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */; };
+		568910182791A18C00AA9D1E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910062791A18C00AA9D1E /* MainViewController.swift */; };
+		569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569825D5279B0131008ABDC1 /* PoiAnnotation.swift */; };
+		56AF181127999BB0009A0B08 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF180F27999BB0009A0B08 /* MenuTableViewCell.swift */; };
+		56AF181227999BB0009A0B08 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +64,7 @@
 		56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MontreuilEstNotreJardinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITests.swift; sourceTree = "<group>"; };
 		56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MontreuilIsMyGardenService.swift; sourceTree = "<group>"; };
+		56890FF22791A18C00AA9D1E /* DataSetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSetService.swift; sourceTree = "<group>"; };
 		56890FF52791A18C00AA9D1E /* coreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = coreDataManager.swift; sourceTree = "<group>"; };
 		56890FF62791A18C00AA9D1E /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MontreuilEstNotreJardin.xcdatamodel; sourceTree = "<group>"; };
@@ -75,8 +77,10 @@
 		568910012791A18C00AA9D1E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlSessionCancelable.swift; sourceTree = "<group>"; };
 		568910032791A18C00AA9D1E /* tableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewExtension.swift; sourceTree = "<group>"; };
-		568910052791A18C00AA9D1E /* jardinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jardinsViewController.swift; sourceTree = "<group>"; };
-		568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MontreuilIsMyGardenViewController.swift; sourceTree = "<group>"; };
+		568910062791A18C00AA9D1E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		569825D5279B0131008ABDC1 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
+		56AF180F27999BB0009A0B08 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +160,7 @@
 		56890FF12791A18C00AA9D1E /* model */ = {
 			isa = PBXGroup;
 			children = (
-				56890FF22791A18C00AA9D1E /* MontreuilIsMyGardenService.swift */,
+				56890FF22791A18C00AA9D1E /* DataSetService.swift */,
 				56890FF42791A18C00AA9D1E /* coreData */,
 			);
 			path = model;
@@ -191,8 +195,8 @@
 		568910042791A18C00AA9D1E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				568910052791A18C00AA9D1E /* jardinsViewController.swift */,
-				568910062791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift */,
+				569825D5279B0131008ABDC1 /* PoiAnnotation.swift */,
+				568910062791A18C00AA9D1E /* MainViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -203,6 +207,8 @@
 				56890FCA2791A04800AA9D1E /* Assets.xcassets */,
 				56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */,
 				56890FC42791A04700AA9D1E /* Main.storyboard */,
+				56AF180F27999BB0009A0B08 /* MenuTableViewCell.swift */,
+				56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56890FCE2791A04800AA9D1E /* LaunchScreen.storyboard in Resources */,
+				56AF181227999BB0009A0B08 /* MenuTableViewCell.xib in Resources */,
 				56890FCB2791A04800AA9D1E /* Assets.xcassets in Resources */,
 				56890FC62791A04700AA9D1E /* Main.storyboard in Resources */,
 			);
@@ -351,16 +358,17 @@
 				568910122791A18C00AA9D1E /* URLSession+GenericCall.swift in Sources */,
 				568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */,
 				568910142791A18C00AA9D1E /* StringExtension.swift in Sources */,
+				569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */,
+				56AF181127999BB0009A0B08 /* MenuTableViewCell.swift in Sources */,
 				5689100F2791A18C00AA9D1E /* UIImageViewExtension.swift in Sources */,
 				5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */,
 				5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */,
-				568910182791A18C00AA9D1E /* MontreuilIsMyGardenViewController.swift in Sources */,
+				568910182791A18C00AA9D1E /* MainViewController.swift in Sources */,
 				568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */,
-				568910172791A18C00AA9D1E /* jardinsViewController.swift in Sources */,
 				568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */,
 				568910132791A18C00AA9D1E /* UIView+border.swift in Sources */,
 				5689100E2791A18C00AA9D1E /* mapTest.xcdatamodeld in Sources */,
-				568910092791A18C00AA9D1E /* MontreuilIsMyGardenService.swift in Sources */,
+				568910092791A18C00AA9D1E /* DataSetService.swift in Sources */,
 				56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */,
 				568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */,
 				56890FC12791A04700AA9D1E /* SceneDelegate.swift in Sources */,

@@ -42,11 +42,11 @@ final class CoreDataManager {
     
     // MARK: - Manage  Categories
     
-    func addCategorie(name: String,count:Int32,state:String) {
+    func addCategorie(name: String,nbRecords:Int32,state:String) {
         if(name.isBlank){return}
         let categorie = Genre(context: managedObjectContext)
         categorie.name = name
-        categorie.count = count
+        categorie.nbRecords = nbRecords
         categorie.state = state
         
         coreDataStack.saveContext()
@@ -62,6 +62,25 @@ final class CoreDataManager {
         coreDataStack.saveContext()
         
     }
+    func selectCategory(_ category:Genre){
+        category.selected = true
+        coreDataStack.saveContext()
+    }
+    func unselectCategory(_ category:Genre){
+        category.selected = false
+        coreDataStack.saveContext()
+        
+    }
+    //MARK: - Retrieves the selected categories
+    
+    func getSelectedCategories()->[Genre]?{
+        
+        let request: NSFetchRequest<Genre> = Genre.fetchRequest()
+        request.predicate =  NSPredicate(format:"selected == %@",NSNumber(value: true))
+       
+      let  selectedCategories = try! managedObjectContext.fetch(request)
+        return selectedCategories
+    }
     // MARK: - Manage  Point of Interest
     
     func addPoi(categorie:Genre,pois:[records]) {
@@ -69,7 +88,6 @@ final class CoreDataManager {
             guard pointData.record != nil else{continue}
             let record:record = pointData.record!
             var id:String
-            
             var longitude:Double
             var latitude:Double
             var name:String
@@ -109,11 +127,11 @@ final class CoreDataManager {
                 longitude = (point?.longitude)!
                 latitude = (point?.latitude)!
                 
-                
                 let poi = Poi(context: managedObjectContext)
                 poi.category = categorie
                 poi.id = id
                 poi.latitude = latitude
+                poi.address = address
                 poi.longitude = longitude
                 poi.name = name
                 poi.email = email
@@ -122,10 +140,17 @@ final class CoreDataManager {
                 continue
             }
         }
-        
+    }
+    func deleteAllpois() {
+        pois.forEach { managedObjectContext.delete($0) }
+        coreDataStack.saveContext()
         
     }
-    
+    func deletePoi(elem:Poi) {
+        managedObjectContext.delete(elem)
+        coreDataStack.saveContext()
+        
+    }
 }
 
 
