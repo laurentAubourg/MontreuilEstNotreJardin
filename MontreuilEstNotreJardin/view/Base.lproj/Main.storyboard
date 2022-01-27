@@ -32,9 +32,6 @@
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wLF-Ny-0cs">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="JRz-ir-U4Y"/>
-                                        </connections>
                                     </mapView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -120,14 +117,33 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="4ok-wZ-R3F">
-                        <barButtonItem key="leftBarButtonItem" title="menu" id="i6k-Y9-7Ck" userLabel="menu">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="categories" id="i6k-Y9-7Ck" userLabel="menu">
                             <connections>
                                 <action selector="menuIsTapped:" destination="BYZ-38-t0r" id="OPY-Rh-YcN"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="di2-P5-PT3">
+                            <rect key="frame" x="109.5" y="5.5" width="174.5" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="2D"/>
+                                <segment title="satelite"/>
+                                <segment title="hybride"/>
+                            </segments>
+                            <connections>
+                                <action selector="typeViewSegmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZNe-8m-wdv"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="votre position" id="tJD-CT-xCE">
+                            <connections>
+                                <action selector="locationBtnTapped:" destination="BYZ-38-t0r" id="kJc-in-N3O"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="EKA-7P-WWb" id="330-17-bBW"/>
                         <outlet property="mapView" destination="wLF-Ny-0cs" id="7RM-Xq-BjF"/>
@@ -155,6 +171,14 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uR3-Co-Ri6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HEk-ME-x4y">
+                    <rect key="frame" x="0.0" y="-1" width="131" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="80.357142857142847"/>
         </scene>
