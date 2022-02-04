@@ -18,12 +18,14 @@ final class MainViewController: UIViewController{
     
     // MARK: - @IBOUTLETS
     
+    @IBOutlet weak var mapSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var  menuTrailingConstraint           : NSLayoutConstraint!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    //  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -32,24 +34,36 @@ final class MainViewController: UIViewController{
     private let dataSetService:DataSetService = .init()
     private var coreDataManager: CoreDataManager?
     private var currentCategoryRank = 0
+    private var currentPoi:Poi?
     private let reuseIdentifier = "cell"
     private var menuOut = false
-    private let locationBase = CLLocation(latitude:48.863507755484214, longitude: 2.4486559017)
+    private let locationBase = CLLocation(latitude:48.863812, longitude: 2.448451)
+ //   private let locationBase = CLLocation(latitude:48.851887, longitude: 2.4216806)
     private var locationManager = CLLocationManager.init()
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // tableView
         let nib = UINib(nibName: "MenuTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        //coreData
         guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataManager = CoreDataManager(coreDataStack:appdelegate.coreDataStack)
-        activityIndicator.stopAnimating()
+        //menu
         closeMenu()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.closeMenu))
+        NotificationCenter.default.addObserver(self, selector: #selector(self.closeMenu), name: UIDevice.orientationDidChangeNotification, object: nil)
+       mapView.addGestureRecognizer(tap)
+        //mapKit
         mapKitInit()
-        
-        
+        //SegmentControl MapType
+        mapSegmentControl.setWidth(30, forSegmentAt: 0)
+        mapSegmentControl.setWidth(30, forSegmentAt: 1)
+        mapSegmentControl.setWidth(30, forSegmentAt: 2)
     }
+    
+    //mARK: - Load Category if it is not already done
     
     override func viewDidAppear(_ animated: Bool)        {
         if coreDataManager?.categories.count == 0 {
@@ -62,7 +76,7 @@ final class MainViewController: UIViewController{
         }
     }
     
-    //MARK: - DataSet Methods
+    //MARK: - ------------------ DataSet Methods ---------------------
     
     //MARK: Load  facets JSON and maj coreData Category entity
     
@@ -71,7 +85,7 @@ final class MainViewController: UIViewController{
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success( let data):
-                    self?.activityIndicator.isHidden = false
+                    //   self?.activityIndicator.isHidden = false
                     for facet in data.facets{
                         
                         if facet.name == "categorie" {
@@ -92,40 +106,11 @@ final class MainViewController: UIViewController{
                 }}
         })
     }
-    
-    //MARK: clean GENRE Entities and reLoad  facets JSON and maj coreData Category entity
-    
-    private func reloadCategories(withPoi:Bool = false){
-        activityIndicator.stopAnimating()
-        coreDataManager?.deleteAllcategories()
-        coreDataManager?.deleteAllpois()
-        loadCategories(withPoi: true)
-    }
-    
-    @IBAction func typeViewSegmentChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        switch selectedIndex{
-        case 0: mapView.mapType = .standard
-        case 1: mapView.mapType = .hybridFlyover
-        case 2: mapView.mapType = .satellite
-        default: mapView.mapType = .standard
-            
-        }
-    }
-    
-    @IBAction func locationBtnTapped(_ sender: UIBarButtonItem) {
-        let span = MKCoordinateSpan.init(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
-        let region = MKCoordinateRegion.init(center:(locationManager.location?.coordinate) as! CLLocationCoordinate2D,span:span)
-        mapView.setRegion(region, animated: true)
-    }
-    @IBAction func reloadBtnTapped(_ sender: Any) {
-        reloadCategories()
-    }
     // MARK: Load  Poi JSON and maj coreData Poi entity for all categories
     
     func loadPoi(){
         
-        let categories = coreDataManager?.categories as [Genre]?
+        let categories = coreDataManager?.categories as [Category]?
         guard categories != nil else{return}
         let categorie = coreDataManager?.categories[currentCategoryRank]
         guard categorie != nil else{return}
@@ -148,25 +133,63 @@ final class MainViewController: UIViewController{
                 loadPoi()
             }else{
                 DispatchQueue.main.async {
-                    activityIndicator.stopAnimating()
+                    //  activityIndicator.stopAnimating()
                     presentAlert(title: "Info", message:"DataIs Loaded.!")
                     
                 }
                 
-                print (coreDataManager?.categories)
+                
             }
         })
         
         return
     }
+    
+    
+    //MARK: clean Category Entities and reLoad  facets JSON and maj coreData Category entity
+    
+    private func reloadCategories(withPoi:Bool = false){
+        //   activityIndicator.stopAnimating()
+        coreDataManager?.deleteAllcategories()
+        coreDataManager?.deleteAllpois()
+        loadCategories(withPoi: true)
+    }
+    
+    // MARK: display favorites annotations
+    
+    func favoriteBtnTapped() {
+    
+        let favoritesPois = coreDataManager?.getFavoritesPoi()
+        guard favoritesPois != nil else{return}
+        
+        for poi in favoritesPois!{
+            guard poi.category != nil else{continue}
+            guard let cat = poi.category else{continue}
+            guard let CategoryName = cat.name else{continue}
+            let title = poi.name
+            let longitude = poi.longitude
+            let latitude = poi.latitude
+            let address = "adress: \(poi.address ?? "NC.")"
+            let email = "email: \(poi.email ?? "NC.")"
+            let telephon = "phone: \(poi.telephon ?? "NC.")"
+            let info = "\(address) \n \(email) \n\(telephon)!"
+            let annotation = PoiAnnotation(category:CategoryName,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
 }
 //MARK: - -------- UITableViewDelegate Extension ---------------
 
 extension MainViewController:UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("ok")
+        
+    }
+
 }
 
-//MARK: -  MainViewController:UITableViewDataSource Extension
+//MARK: -  -------- TableViewDataSource Extension ---------------
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -183,7 +206,7 @@ extension MainViewController: UITableViewDataSource {
         
         cell.titleLab.text = item!.name
         cell.checkBoxBtn.tag = indexPath.row
-        cell.checkBoxBtn.isSelected = ((item?.selected) == true)
+        cell.checkBoxBtn.isSelected = ((item?.selected) == item?.selected)
         cell.textLabel?.textColor = UIColor.white
         
         return cell
@@ -191,7 +214,7 @@ extension MainViewController: UITableViewDataSource {
     
 }
 
-// MARK: - - MenuDelegate extension
+// MARK: - ---------  MenuDelegate extension -----------------
 
 extension  MainViewController:MenuDelegate{
     
@@ -206,13 +229,13 @@ extension  MainViewController:MenuDelegate{
         }
     }
     
-    //MARK: set selected attribute true in the Genre entity
+    //MARK: set selected attribute true in the Category entity
     
     func categoryIsSelected(_ rank:Int){
         coreDataManager?.selectCategory((coreDataManager?.categories[rank])!)
     }
     
-    //MARK: set selected attribute false in the Genre entity
+    //MARK: set selected attribute false in the Category entity
     
     func categoryIsUnselected(_ rank:Int){
         coreDataManager?.unselectCategory((coreDataManager?.categories[rank])!)
@@ -220,13 +243,12 @@ extension  MainViewController:MenuDelegate{
     
     //MARK: hide menu
     
-    func closeMenu(){
-        
-        
+    @objc func closeMenu(){
+
         menuLeadingConstraint.constant = -(view.frame.width*2)
         menuTrailingConstraint.constant = view.frame.width*2
         menuOut = true
-        addPoiAnnotation()
+        addSelectedPoiAnnotation()
     }
     
     //MARK: display menu
@@ -234,14 +256,14 @@ extension  MainViewController:MenuDelegate{
     func openMenu(){
         
         
-        menuLeadingConstraint.constant = 0
-        menuTrailingConstraint.constant = view.frame.width/4
+        menuLeadingConstraint.constant = 5
+        menuTrailingConstraint.constant = view.frame.width/2
         
         menuOut = false
     }
 }
 
-//Mark: - extension MapkitDelegate
+//Mark: - ----------- extension MapkitDelegate -----------------
 
 extension MainViewController:MKMapViewDelegate{
     
@@ -253,17 +275,25 @@ extension MainViewController:MKMapViewDelegate{
         mapView.showsUserLocation = true
         mapView.showsScale = true
         mapView.showsCompass = true
+        mapView.showsBuildings = true
         locationManager.requestWhenInUseAuthorization()
         
-        let  regionLongitudalMeter = 3000.0
-        let  regionLmatitudalMeter = 3500.0
+        let  regionLongitudalMeter = 5000.0
+        let  regionLmatitudalMeter = 5000.0
         let coordinRegion = MKCoordinateRegion(center:locationBase.coordinate, latitudinalMeters:regionLongitudalMeter,longitudinalMeters:regionLmatitudalMeter)
         mapView.setRegion(coordinRegion, animated: true)
-        mapView.setCameraBoundary(
-            MKMapView.CameraBoundary(coordinateRegion: coordinRegion),
-            animated: true)
+        mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: coordinRegion),animated: true)
         let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance:5000.000)
         mapView.setCameraZoomRange(zoomRange, animated: true)
+        // create a 3D Camera
+        let mapCamera = MKMapCamera()
+        mapCamera.centerCoordinate = locationBase.coordinate
+        mapCamera.pitch = 0
+        mapCamera.altitude = 800
+        mapCamera.heading = 30
+        
+        // set the camera property
+        mapView.camera = mapCamera
     }
     
     //Mark: ANNOTATIONS
@@ -273,29 +303,40 @@ extension MainViewController:MKMapViewDelegate{
         mapView.removeAnnotations(annotations)
     }
     
-    func addPoiAnnotation(){
+    //MARK; - create an annotation for each category selected
+    
+    func addSelectedPoiAnnotation(){
         removeAllAnnotation()
         let  SelectedAnnotations = coreDataManager?.getSelectedCategories()
         guard  SelectedAnnotations!.count > 0 else{return}
-       // let cat = SelectedAnnotations![0]
-        for cat:Genre in Array(SelectedAnnotations!){
-        let pois = cat.poi!.allObjects as! [Poi]
-        
-        guard cat.name != nil else{return}
-        for poi in pois{
-            let title = poi.name
-            let longitude = poi.longitude
-            let latitude = poi.latitude
-            let address = "adress: \(poi.address ?? "NC.")"
-            let email = "email: \(poi.email ?? "NC.")"
-            let telephon = "phone: \(poi.telephon ?? "NC.")"
-            let info = "\(address) \n \(email) \n\(telephon)!"
-            let annotation = PoiAnnotation(category:cat.name!,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
-            print ("nannotation.title:\(annotation.title)")
-            mapView.addAnnotation(annotation)
-        }
+        // let cat = SelectedAnnotations![0]
+        for cat:Category in Array(SelectedAnnotations!){
+            let pois = cat.poi!.allObjects as! [Poi]
+            
+            guard cat.name != nil else{return}
+            for poi in pois{
+                let title = poi.name
+                let longitude = poi.longitude
+                let latitude = poi.latitude
+                let address = "adress: \(poi.address ?? "NC.")"
+                let email = "email: \(poi.email ?? "NC.")"
+                let telephon = "phone: \(poi.telephon ?? "NC.")"
+                let info = "\(address) \n \(email) \n\(telephon)!"
+                let annotation = PoiAnnotation(category:cat.name!,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
+                mapView.addAnnotation(annotation)
+            }
         }
     }
+    
+    //MARK: get Poi entity where longitude and latitude parameers corresponding to those sought
+    
+    func getPoiByLocation(longitude:Double,latitude:Double)->Poi?{
+        let poi = coreDataManager?.getPoiByLocation(longitude: longitude, latitude: latitude)
+        return poi
+    }
+    
+    //MARK MapView delegate method display annotation
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
         if !(annotation is PoiAnnotation) {
@@ -312,29 +353,86 @@ extension MainViewController:MKMapViewDelegate{
         else {
             annotationView!.annotation = annotation
         }
-        let poiCategory =  (annotation as! PoiAnnotation).category
-        var pinIcon = ""
-      
-        switch poiCategory{
-        case "Arbre à fruits comestibles": pinIcon = "treePin"
-        case "Espace adopté": pinIcon = "adoptedPin"
-        case "Espace adopté (ophm)": pinIcon = "adoptedPin"
-        case "Jardins familiaux": pinIcon = "familyGardenPin"
-        case "Jardin partagé": pinIcon = "sharedGarden"
-        case "Label Jardins Remarquables": pinIcon = "gardenPin"
-        case "Micro ferme urbaine": pinIcon = "greenMapPin"
-        case "Micro-espace on sème": pinIcon = "seedPin"
-        case "Parc": pinIcon = "parkPin"
-        case "Site en gestion différenciée": pinIcon = "greenMapPin"
-        case "Square": pinIcon = "greenMapPin"
-        case "abri pour la faune": pinIcon = "animalPin"
-        case "arbre": pinIcon = "treePin"
-        case "jardin associatif": pinIcon = "gardenPin"
-        default: pinIcon = "mapPin"
-        }
-        let pinImage = UIImage(named: pinIcon )
+        let poiCategoryName =  (annotation as! PoiAnnotation).category
+        let pinImage = UIImage(named: coreDataManager?.getCategoryPinIcon(poiCategoryName) ?? "" )
         annotationView!.image = pinImage
-        print ("-----> \(poiCategory) -- \(pinIcon )")
+        annotationView!.canShowCallout = true
+        annotationView!.calloutOffset = CGPoint(x: -5, y: 5)
+        annotationView!.rightCalloutAccessoryView = UIButton(type:.contactAdd)
+        
         return annotationView
     }
+    
+    // MARK: - alert Info when clic annotation button
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let poiCoordinate = (view.annotation as! PoiAnnotation).coordinate
+        currentPoi = getPoiByLocation(longitude: poiCoordinate.longitude, latitude: poiCoordinate.latitude)
+        performSegue(withIdentifier: "annotationsInfos", sender: nil)
+    }
+    
+    //MARK: - PopUp Segue
+    
+    override   func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+        if segue.identifier == "annotationsInfos"
+        {
+            let vc = segue.destination as! infosViewController
+            vc.poi = currentPoi
+            vc.delegate = self
+            
+        }else if(segue.identifier == "showDelegate"){
+            favoriteBtnTapped()
+            let vc = segue.destination as! FavoriteViewController
+            vc.delegate = self
+        }
+    }
+    
+    func addPoiToFavorit(){
+        coreDataManager?.addPoiToFavorit(currentPoi)
+    }
+        
+    @IBAction func typeViewSegmentChanged(_ sender: UISegmentedControl) {
+        let selectedIndex = sender.selectedSegmentIndex
+        let mapCamera = MKMapCamera()
+        mapCamera.centerCoordinate = mapView.centerCoordinate
+        mapCamera.altitude = mapView.camera.altitude
+        switch selectedIndex{
+        case 0:
+            mapView.mapType = .mutedStandard
+            mapCamera.pitch = 10
+          
+        case 1:
+            mapView.mapType = .mutedStandard
+            mapCamera.pitch = 45
+        case 2:mapView.mapType = .satelliteFlyover
+            mapView.camera = mapCamera
+        default: mapView.mapType = .standard
+            break
+            
+        }
+        mapView.camera = mapCamera
+    }
+    
+    //MARK - positions the card at the user's location
+    
+    @IBAction func locationBtnTapped(_ sender: UIBarButtonItem) {
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
+        guard let location = locationManager.location else{return}
+        let region = MKCoordinateRegion.init(center:(location.coordinate),span:span)
+        mapView.setRegion(region, animated: true)
+     
+    }
+    func zoomPoi(poi:Poi){
+        let locationPoi = CLLocation(latitude:poi.latitude, longitude:poi.longitude)
+        let  regionLongitudalMeter = 10.0
+        let  regionLmatitudalMeter = 10.0
+       // mapView.mapType = .satelliteFlyover
+        let coordinRegion = MKCoordinateRegion(center:locationPoi.coordinate, latitudinalMeters:regionLongitudalMeter,longitudinalMeters:regionLmatitudalMeter)
+        mapView.setRegion(coordinRegion, animated: true)
+     
+    }
+    
 }

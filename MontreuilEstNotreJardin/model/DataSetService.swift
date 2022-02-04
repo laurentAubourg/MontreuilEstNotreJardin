@@ -29,7 +29,7 @@ final class DataSetService:UrlSessionCancelable,UrlBuildable{
     
     // MARK: -  Recover all facets
     
-    func getFacets( callback: @escaping( Result<facetResponse,NetworkError>)->Void) {
+    func getFacets( callback: @escaping( Result<FacetResponse,NetworkError>)->Void) {
         let url:URL = URL(string: "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/facets")!
         session.dataTask(with: url, callback: callback)
         return
@@ -69,18 +69,18 @@ struct Facet: Decodable {
     }
 }
 
-struct facets: Decodable {
+struct Facets: Decodable {
     let name:String
     let facets :[Facet]
 }
-struct facetResponse: Decodable {
+struct FacetResponse: Decodable {
     
-    let facets :[facets]
+    let facets :[Facets]
 }
 // MARK: - Records
-struct records: Decodable {
+struct Records: Decodable {
     
-    let record :record?
+    let record :Record?
     enum CodingKeys: String, CodingKey {
         case record
     }
@@ -92,7 +92,7 @@ struct field:Decodable{
     let state:String?
     let address:String?
     let email:String?
-    let pointgeo:pointgeo?
+    let pointgeo:Pointgeo?
     let telephon:String?
     
     enum CodingKeys: String, CodingKey {
@@ -107,7 +107,7 @@ struct field:Decodable{
         case pointgeo
     }
 }
-struct pointgeo:Decodable{
+struct Pointgeo:Decodable{
     let longitude:Double?
     let latitude:Double?
     enum CodingKeys: String, CodingKey {
@@ -119,14 +119,14 @@ struct pointgeo:Decodable{
 }
 // MARK: decodable struct for Records list
 
-struct record: Decodable {
+struct Record: Decodable {
     let id: String?
     let fields:field?
 }
 // MARK: -PoiResponse Struct
 
 struct PoiResponse: Decodable {
-    let records :[records]
+    let records :[Records]
     let count:Int?
     enum CodingKeys: String, CodingKey {
         case records

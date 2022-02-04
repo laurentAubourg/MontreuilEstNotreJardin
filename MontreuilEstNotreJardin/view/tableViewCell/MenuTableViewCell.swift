@@ -27,11 +27,12 @@ class MenuTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+     
+        chevkboxTapped(nil)
         // Configure the view for the selected state
     }
     
-    @IBAction func chechBoxTapped(_ sender: Any) {
+    @IBAction func chevkboxTapped(_ sender: UIButton?) {
         if checkBoxBtn.isSelected == true{
             checkBoxBtn.isSelected = false
             delegate?.categoryIsUnselected(checkBoxBtn.tag)
@@ -39,6 +40,6 @@ class MenuTableViewCell: UITableViewCell {
             checkBoxBtn.isSelected = true
             delegate?.categoryIsSelected(checkBoxBtn.tag)
         }
-        
     }
+  
 }

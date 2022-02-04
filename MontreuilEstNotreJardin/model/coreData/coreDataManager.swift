@@ -23,8 +23,8 @@ final class CoreDataManager {
         
     }
     
-    var categories: [Genre] {
-        let request: NSFetchRequest<Genre> = Genre.fetchRequest()
+    var categories: [Category] {
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         request.returnsObjectsAsFaults = false
         guard let categories = try? managedObjectContext.fetch(request) else {return [] }
@@ -44,8 +44,9 @@ final class CoreDataManager {
     
     func addCategorie(name: String,nbRecords:Int32,state:String) {
         if(name.isBlank){return}
-        let categorie = Genre(context: managedObjectContext)
+        let categorie = Category(context: managedObjectContext)
         categorie.name = name
+        categorie.icon = getCategoryPinIcon(name)
         categorie.nbRecords = nbRecords
         categorie.state = state
         
@@ -57,36 +58,45 @@ final class CoreDataManager {
         coreDataStack.saveContext()
         
     }
-    func deletecategorie(elem:Genre) {
+    func deletecategorie(elem:Category) {
         managedObjectContext.delete(elem)
         coreDataStack.saveContext()
         
     }
-    func selectCategory(_ category:Genre){
+    func selectCategory(_ category:Category){
         category.selected = true
         coreDataStack.saveContext()
     }
-    func unselectCategory(_ category:Genre){
+    func unselectCategory(_ category:Category){
         category.selected = false
         coreDataStack.saveContext()
         
     }
+    func unselectAllCategory(){
+        for category in categories{
+            unselectCategory(category)
+        }
+  
+        
+    }
     //MARK: - Retrieves the selected categories
     
-    func getSelectedCategories()->[Genre]?{
+    func getSelectedCategories()->[Category]?{
         
-        let request: NSFetchRequest<Genre> = Genre.fetchRequest()
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.predicate =  NSPredicate(format:"selected == %@",NSNumber(value: true))
        
       let  selectedCategories = try! managedObjectContext.fetch(request)
         return selectedCategories
     }
+    
+  
     // MARK: - Manage  Point of Interest
     
-    func addPoi(categorie:Genre,pois:[records]) {
-        for pointData:records in pois{
+    func addPoi(categorie:Category,pois:[Records]) {
+        for pointData:Records in pois{
             guard pointData.record != nil else{continue}
-            let record:record = pointData.record!
+            let record:Record = pointData.record!
             var id:String
             var longitude:Double
             var latitude:Double
@@ -109,6 +119,11 @@ final class CoreDataManager {
                     address = fields.address!
                 }else{
                     continue
+                }
+                if fields.telephon != nil {
+                    telephon = fields.telephon!
+                }else{
+                    telephon = "NC"
                 }
                 if fields.email != nil {
                     email = fields.email!
@@ -135,6 +150,7 @@ final class CoreDataManager {
                 poi.longitude = longitude
                 poi.name = name
                 poi.email = email
+                poi.telephon = telephon
                 coreDataStack.saveContext()
             }else{
                 continue
@@ -150,6 +166,54 @@ final class CoreDataManager {
         managedObjectContext.delete(elem)
         coreDataStack.saveContext()
         
+    }
+    func getPoiByLocation(longitude:Double,latitude:Double)->Poi{
+        let request: NSFetchRequest<Poi> = Poi.fetchRequest()
+        let predicate = NSPredicate(format: "longitude = %@ AND latitude = %@", NSNumber(value: longitude), NSNumber(value: latitude))
+        request.predicate =  predicate
+        let  selectedPoi = try! managedObjectContext.fetch(request)
+        return selectedPoi[0]
+    }
+    func getFavoritesPoi()->[Poi]{
+        let request: NSFetchRequest<Poi> = Poi.fetchRequest()
+        let predicate = NSPredicate(format:"favorit == %@",NSNumber(value: true))
+        request.predicate =  predicate
+        let  selectedPoi = try! managedObjectContext.fetch(request)
+        return selectedPoi
+        
+    }
+    func addPoiToFavorit(_ poi:Poi?){
+        guard poi != nil else{return}
+        poi!.favorit = true
+        coreDataStack.saveContext()
+    }
+    func removePoiToFavorit(_ poi:Poi?){
+        guard poi != nil else{return}
+        poi!.favorit = false
+        coreDataStack.saveContext()
+    }
+    //MARK: - return rhe pin icon nome of a category
+    
+    func getCategoryPinIcon(_ poiCategory:String)-> String{
+        var pinIcon = ""
+        switch poiCategory{
+        case "Arbre à fruits comestibles": pinIcon = "treePin"
+        case "Espace adopté": pinIcon = "adoptedPin"
+        case "Espace adopté (ophm)": pinIcon = "adoptedPin"
+        case "Jardins familiaux": pinIcon = "familyGardenPin"
+        case "Jardin partagé": pinIcon = "sharedGarden"
+        case "Label Jardins Remarquables": pinIcon = "gardenPin"
+        case "Micro ferme urbaine": pinIcon = "greenMapPin"
+        case "Micro-espace on sème": pinIcon = "seedPin"
+        case "Parc": pinIcon = "parkPin"
+        case "Site en gestion différenciée": pinIcon = "greenMapPin"
+        case "Square": pinIcon = "greenMapPin"
+        case "abri pour la faune": pinIcon = "animalPin"
+        case "arbre": pinIcon = "treePin"
+        case "jardin associatif": pinIcon = "gardenPin"
+        default: pinIcon = "greenMapPin"
+        }
+        return pinIcon
     }
 }
 

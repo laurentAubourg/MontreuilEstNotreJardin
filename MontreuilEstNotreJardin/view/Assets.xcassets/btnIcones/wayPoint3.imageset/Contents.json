@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "wayPoint3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "seedPin.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
