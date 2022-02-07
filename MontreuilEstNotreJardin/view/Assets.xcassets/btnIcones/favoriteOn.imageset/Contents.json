@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "wayPoint.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "favoriteOn.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

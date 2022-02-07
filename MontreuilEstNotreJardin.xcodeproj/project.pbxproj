@@ -14,9 +14,6 @@
 		56890FC62791A04700AA9D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56890FC42791A04700AA9D1E /* Main.storyboard */; };
 		56890FCB2791A04800AA9D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56890FCA2791A04800AA9D1E /* Assets.xcassets */; };
 		56890FCE2791A04800AA9D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56890FCC2791A04800AA9D1E /* LaunchScreen.storyboard */; };
-		56890FD92791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */; };
-		56890FE32791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */; };
-		56890FE52791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */; };
 		568910092791A18C00AA9D1E /* DataSetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF22791A18C00AA9D1E /* DataSetService.swift */; };
 		5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF52791A18C00AA9D1E /* coreDataManager.swift */; };
 		5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF62791A18C00AA9D1E /* CoreDataStack.swift */; };
@@ -36,17 +33,15 @@
 		56AF181227999BB0009A0B08 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */; };
 		56CDF4DE27AC0EAD004F6C78 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CDF4DC27AC0EAD004F6C78 /* FavoriteTableViewCell.swift */; };
 		56CDF4DF27AC0EAD004F6C78 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CDF4DD27AC0EAD004F6C78 /* FavoriteTableViewCell.xib */; };
+		56F7B88027B13C7A0046BD76 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B87F27B13C7A0046BD76 /* FakeResponseData.swift */; };
+		56F7B88227B15F680046BD76 /* facet.json in Resources */ = {isa = PBXBuildFile; fileRef = 56F7B88127B15F680046BD76 /* facet.json */; };
+		56F7B88427B1603E0046BD76 /* Pois.json in Resources */ = {isa = PBXBuildFile; fileRef = 56F7B88327B1603E0046BD76 /* Pois.json */; };
+		56F7B88627B160D50046BD76 /* UrlProtocolFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88527B160D50046BD76 /* UrlProtocolFake.swift */; };
+		56F7B88927B162090046BD76 /* DataSetServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		56890FD52791A04800AA9D1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56890FB32791A04700AA9D1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56890FBA2791A04700AA9D1E;
-			remoteInfo = MontreuilEstNotreJardin;
-		};
-		56890FDF2791A04800AA9D1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56890FB32791A04700AA9D1E /* Project object */;
 			proxyType = 1;
@@ -66,8 +61,6 @@
 		56890FCD2791A04800AA9D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56890FCF2791A04800AA9D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MontreuilEstNotreJardinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinTests.swift; sourceTree = "<group>"; };
-		56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MontreuilEstNotreJardinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56890FE22791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITests.swift; sourceTree = "<group>"; };
 		56890FE42791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontreuilEstNotreJardinUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		56890FF22791A18C00AA9D1E /* DataSetService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSetService.swift; sourceTree = "<group>"; };
@@ -89,6 +82,11 @@
 		56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		56CDF4DC27AC0EAD004F6C78 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		56CDF4DD27AC0EAD004F6C78 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
+		56F7B87F27B13C7A0046BD76 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		56F7B88127B15F680046BD76 /* facet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = facet.json; sourceTree = "<group>"; };
+		56F7B88327B1603E0046BD76 /* Pois.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Pois.json; sourceTree = "<group>"; };
+		56F7B88527B160D50046BD76 /* UrlProtocolFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlProtocolFake.swift; sourceTree = "<group>"; };
+		56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSetServiceTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +98,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		56890FD12791A04800AA9D1E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56890FDB2791A04800AA9D1E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,7 +122,6 @@
 			children = (
 				56890FBB2791A04700AA9D1E /* MontreuilEstNotreJardin.app */,
 				56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */,
-				56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,7 +141,10 @@
 		56890FD72791A04800AA9D1E /* MontreuilEstNotreJardinTests */ = {
 			isa = PBXGroup;
 			children = (
-				56890FD82791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift */,
+				56F7B88727B161440046BD76 /* helpers */,
+				56F7B88127B15F680046BD76 /* facet.json */,
+				56F7B88327B1603E0046BD76 /* Pois.json */,
+				56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */,
 			);
 			path = MontreuilEstNotreJardinTests;
 			sourceTree = "<group>";
@@ -243,6 +236,15 @@
 			path = tableViewCell;
 			sourceTree = "<group>";
 		};
+		56F7B88727B161440046BD76 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				56F7B87F27B13C7A0046BD76 /* FakeResponseData.swift */,
+				56F7B88527B160D50046BD76 /* UrlProtocolFake.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,24 +283,6 @@
 			productReference = 56890FD42791A04800AA9D1E /* MontreuilEstNotreJardinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		56890FDD2791A04800AA9D1E /* MontreuilEstNotreJardinUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56890FEE2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinUITests" */;
-			buildPhases = (
-				56890FDA2791A04800AA9D1E /* Sources */,
-				56890FDB2791A04800AA9D1E /* Frameworks */,
-				56890FDC2791A04800AA9D1E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				56890FE02791A04800AA9D1E /* PBXTargetDependency */,
-			);
-			name = MontreuilEstNotreJardinUITests;
-			productName = MontreuilEstNotreJardinUITests;
-			productReference = 56890FDE2791A04800AA9D1E /* MontreuilEstNotreJardinUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -313,10 +297,6 @@
 						CreatedOnToolsVersion = 13.1;
 					};
 					56890FD32791A04800AA9D1E = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 56890FBA2791A04700AA9D1E;
-					};
-					56890FDD2791A04800AA9D1E = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 56890FBA2791A04700AA9D1E;
 					};
@@ -337,7 +317,6 @@
 			targets = (
 				56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */,
 				56890FD32791A04800AA9D1E /* MontreuilEstNotreJardinTests */,
-				56890FDD2791A04800AA9D1E /* MontreuilEstNotreJardinUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,13 +338,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56890FDC2791A04800AA9D1E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				56F7B88427B1603E0046BD76 /* Pois.json in Resources */,
+				56F7B88227B15F680046BD76 /* facet.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,16 +378,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56890FD92791A04800AA9D1E /* MontreuilEstNotreJardinTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56890FDA2791A04800AA9D1E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56890FE52791A04800AA9D1E /* MontreuilEstNotreJardinUITestsLaunchTests.swift in Sources */,
-				56890FE32791A04800AA9D1E /* MontreuilEstNotreJardinUITests.swift in Sources */,
+				56F7B88927B162090046BD76 /* DataSetServiceTestCase.swift in Sources */,
+				56F7B88627B160D50046BD76 /* UrlProtocolFake.swift in Sources */,
+				56F7B88027B13C7A0046BD76 /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,11 +391,6 @@
 			isa = PBXTargetDependency;
 			target = 56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */;
 			targetProxy = 56890FD52791A04800AA9D1E /* PBXContainerItemProxy */;
-		};
-		56890FE02791A04800AA9D1E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 56890FBA2791A04700AA9D1E /* MontreuilEstNotreJardin */;
-			targetProxy = 56890FDF2791A04800AA9D1E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -674,52 +636,6 @@
 			};
 			name = Release;
 		};
-		56890FEF2791A04800AA9D1E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MontreuilEstNotreJardin;
-			};
-			name = Debug;
-		};
-		56890FF02791A04800AA9D1E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3Y6V9A6BSD;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.free.laurent.aubourg.MontreuilEstNotreJardinUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MontreuilEstNotreJardin;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -746,15 +662,6 @@
 			buildConfigurations = (
 				56890FEC2791A04800AA9D1E /* Debug */,
 				56890FED2791A04800AA9D1E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56890FEE2791A04800AA9D1E /* Build configuration list for PBXNativeTarget "MontreuilEstNotreJardinUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56890FEF2791A04800AA9D1E /* Debug */,
-				56890FF02791A04800AA9D1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -15,7 +15,7 @@ protocol MenuDelegate{
 class MenuTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLab: UILabel!
-    @IBOutlet weak var         checkBoxBtn: UIButton!
+    @IBOutlet weak var checkBoxBtn: UIButton!
     
     var delegate:MenuDelegate? = nil
     override func awakeFromNib() {
@@ -28,11 +28,11 @@ class MenuTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
      
-        chevkboxTapped(nil)
+       // checkboxTapped(nil)
         // Configure the view for the selected state
     }
     
-    @IBAction func chevkboxTapped(_ sender: UIButton?) {
+    @IBAction func checkboxTapped(_ sender: UIButton?) {
         if checkBoxBtn.isSelected == true{
             checkBoxBtn.isSelected = false
             delegate?.categoryIsUnselected(checkBoxBtn.tag)

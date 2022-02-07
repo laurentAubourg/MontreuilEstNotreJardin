@@ -26,17 +26,20 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qN-yQ-mAg">
                         <rect key="frame" x="54" y="0.0" width="257" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="WH8-3M-9hf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QsR-s7-y34"/>
                     <constraint firstItem="WH8-3M-9hf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="jIm-oj-i81"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="iconImageView" destination="WH8-3M-9hf" id="qtl-OR-ib4"/>
                 <outlet property="titleLab" destination="7qN-yQ-mAg" id="Jqd-3D-iDF"/>

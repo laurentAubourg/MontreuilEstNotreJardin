@@ -12,7 +12,9 @@ class infosViewController: UIViewController {
     @IBOutlet weak var infosLab: UILabel!
     @IBOutlet weak var nameLab: UILabel!
     
-    var delegate:MainViewController?
+    @IBOutlet weak var favoriteBtn: UIButton!
+    @IBOutlet weak var wayBtn: UIButton!
+    weak var delegate:MainViewController?
     var poi:Poi?
    
     override func viewDidLoad() {
@@ -25,6 +27,12 @@ class infosViewController: UIViewController {
         let info = "\(address) \n \n\(email) \n\(telephon)!"
         nameLab.text = title
         infosLab.text = info
+        if (poi?.favorit == true){
+     
+            favoriteBtn.setImage(UIImage(named: "favoriteOn"), for: .normal)
+        }else{
+            favoriteBtn.setImage(UIImage(named: "favoriteOff"), for: .normal)
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -32,10 +40,18 @@ class infosViewController: UIViewController {
 
     @IBAction func favoritBtnTapped(_ sender: Any) {
         delegate!.addPoiToFavorit()
-        dismiss(animated: true, completion: nil)
+        if (poi?.favorit == true){
+     
+            favoriteBtn.setImage(UIImage(named: "favoriteOn"), for: .normal)
+        }else{
+            favoriteBtn.setImage(UIImage(named: "favoriteOff"), for: .normal)
+        }
+      
     }
     
-    @IBAction func closeBtnTapped(_ sender: Any) {
+  
+    @IBAction func wayBtnTapped(_ sender: Any) {
+        delegate!.tracePath()
         dismiss(animated: true, completion: nil)
     }
 }

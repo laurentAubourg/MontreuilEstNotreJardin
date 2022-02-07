@@ -1,8 +1,8 @@
 //
-//  CurrencyConverterService.swift
-//  baluchon
+//  DataSetService.swift
+//  MontreuilEstNotreJardin
 //
-//  Created by laurent aubourg on 27/08/2021.
+//  Created by laurent aubourg on 02/12/2021.
 //
 //
 import Foundation
@@ -22,10 +22,7 @@ final class DataSetService:UrlSessionCancelable,UrlBuildable{
     
     // MARK: - Request to the API to ask for the available languages
     
-    /*
-     https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/?refine=categorie:Jardin%20partag%C3%A9
-     https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/facets
-     */
+
     
     // MARK: -  Recover all facets
     
@@ -39,16 +36,11 @@ final class DataSetService:UrlSessionCancelable,UrlBuildable{
     
     func getPoi(for categorie:String = "",nbRecords:Int, callback: @escaping( Result<PoiResponse,NetworkError>)->Void) {
         
-        /*    let urlString =  "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/?refine=categorie:\(categorie)"
-         
-         let url:URL = URL(string:urlString)!*/
-        
-        
         let baseUrl:String = "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/"
         let queryItem:[[String:String]] = [["name":"refine","value":"categorie:\(categorie)"],
                                             ["name":"rows","value":"100"]]
         guard let url = buildUrl(baseUrl:baseUrl, Items:queryItem)  else{return }
-        print(url)
+    
         session.dataTask(with: url, callback: callback)
         return
     }

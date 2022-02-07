@@ -38,7 +38,7 @@ final class MainViewController: UIViewController{
     private let reuseIdentifier = "cell"
     private var menuOut = false
     private let locationBase = CLLocation(latitude:48.863812, longitude: 2.448451)
- //   private let locationBase = CLLocation(latitude:48.851887, longitude: 2.4216806)
+    private var removeAnnotatioOnTap = true
     private var locationManager = CLLocationManager.init()
     // MARK: - Life cycle
     
@@ -54,7 +54,7 @@ final class MainViewController: UIViewController{
         closeMenu()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.closeMenu))
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeMenu), name: UIDevice.orientationDidChangeNotification, object: nil)
-       mapView.addGestureRecognizer(tap)
+        mapView.addGestureRecognizer(tap)
         //mapKit
         mapKitInit()
         //SegmentControl MapType
@@ -155,11 +155,11 @@ final class MainViewController: UIViewController{
         loadCategories(withPoi: true)
     }
     
-    // MARK: display favorites annotations
+    /* MARK: display favorites annotations
     
     func favoriteBtnTapped() {
-    
-        let favoritesPois = coreDataManager?.getFavoritesPoi()
+        
+       let favoritesPois = coreDataManager?.getFavoritesPoi()
         guard favoritesPois != nil else{return}
         
         for poi in favoritesPois!{
@@ -175,18 +175,27 @@ final class MainViewController: UIViewController{
             let info = "\(address) \n \(email) \n\(telephon)!"
             let annotation = PoiAnnotation(category:CategoryName,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
             mapView.addAnnotation(annotation)
+   
         }
-    }
+    }*/
     
 }
 //MARK: - -------- UITableViewDelegate Extension ---------------
 
+//MARK: - activate or deactivate the checkBox button of the cell
+
 extension MainViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("ok")
+        guard let category = coreDataManager?.categories[indexPath.row] else{return}
+      if(category.selected == true){
+            coreDataManager?.unselectCategory(category)
+        }else{
+            coreDataManager?.selectCategory(category)
+        }
+        tableView.reloadData()
         
     }
-
+    
 }
 
 //MARK: -  -------- TableViewDataSource Extension ---------------
@@ -206,7 +215,7 @@ extension MainViewController: UITableViewDataSource {
         
         cell.titleLab.text = item!.name
         cell.checkBoxBtn.tag = indexPath.row
-        cell.checkBoxBtn.isSelected = ((item?.selected) == item?.selected)
+        cell.checkBoxBtn.isSelected = ((item?.selected) == true)
         cell.textLabel?.textColor = UIColor.white
         
         return cell
@@ -221,6 +230,7 @@ extension  MainViewController:MenuDelegate{
     //MARK: button Menu is tapped
     
     @IBAction func menuIsTapped(_ sender: Any) {
+        removeAnnotatioOnTap = true
         if menuOut == false{
             closeMenu()
         }else{
@@ -244,11 +254,14 @@ extension  MainViewController:MenuDelegate{
     //MARK: hide menu
     
     @objc func closeMenu(){
-
+      
         menuLeadingConstraint.constant = -(view.frame.width*2)
         menuTrailingConstraint.constant = view.frame.width*2
         menuOut = true
+        if removeAnnotatioOnTap == true
+         {
         addSelectedPoiAnnotation()
+       }
     }
     
     //MARK: display menu
@@ -266,8 +279,6 @@ extension  MainViewController:MenuDelegate{
 //Mark: - ----------- extension MapkitDelegate -----------------
 
 extension MainViewController:MKMapViewDelegate{
-    
-    
     
     func mapKitInit(){
         mapView.delegate = self
@@ -296,6 +307,15 @@ extension MainViewController:MKMapViewDelegate{
         mapView.camera = mapCamera
     }
     
+    //Mark: Draws the line between the user's location and the selected point
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .red
+        renderer.lineWidth = 5
+        return renderer
+    }
+    
     //Mark: ANNOTATIONS
     
     func removeAllAnnotation(){
@@ -309,25 +329,34 @@ extension MainViewController:MKMapViewDelegate{
         removeAllAnnotation()
         let  SelectedAnnotations = coreDataManager?.getSelectedCategories()
         guard  SelectedAnnotations!.count > 0 else{return}
-        // let cat = SelectedAnnotations![0]
+        
         for cat:Category in Array(SelectedAnnotations!){
             let pois = cat.poi!.allObjects as! [Poi]
             
             guard cat.name != nil else{return}
             for poi in pois{
-                let title = poi.name
-                let longitude = poi.longitude
-                let latitude = poi.latitude
-                let address = "adress: \(poi.address ?? "NC.")"
-                let email = "email: \(poi.email ?? "NC.")"
-                let telephon = "phone: \(poi.telephon ?? "NC.")"
-                let info = "\(address) \n \(email) \n\(telephon)!"
-                let annotation = PoiAnnotation(category:cat.name!,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
-                mapView.addAnnotation(annotation)
+                let annotation = createAnotation(poi: poi,category: cat)
+                addAnnotation(annotation: annotation)
             }
         }
     }
     
+    //MARK: -Create an annotation for the point passed in parameter
+    
+    func createAnotation(poi:Poi,category:Category)->PoiAnnotation{
+        let title = poi.name
+        let longitude = poi.longitude
+        let latitude = poi.latitude
+        let address = "adresse: \(poi.address ?? "NC.")"
+        let email = "email: \(poi.email ?? "NC.")"
+        let telephon = "phone: \(poi.telephon ?? "NC.")"
+        let info = "\(address) \n \(email) \n\(telephon)!"
+        let annotation = PoiAnnotation(category:category.name!,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
+        return annotation
+    }
+    func addAnnotation(annotation:PoiAnnotation){
+        mapView.addAnnotation(annotation)
+    }
     //MARK: get Poi entity where longitude and latitude parameers corresponding to those sought
     
     func getPoiByLocation(longitude:Double,latitude:Double)->Poi?{
@@ -358,7 +387,7 @@ extension MainViewController:MKMapViewDelegate{
         annotationView!.image = pinImage
         annotationView!.canShowCallout = true
         annotationView!.calloutOffset = CGPoint(x: -5, y: 5)
-        annotationView!.rightCalloutAccessoryView = UIButton(type:.contactAdd)
+        annotationView!.rightCalloutAccessoryView = UIButton(type:.infoLight)
         
         return annotationView
     }
@@ -384,16 +413,63 @@ extension MainViewController:MKMapViewDelegate{
             vc.delegate = self
             
         }else if(segue.identifier == "showDelegate"){
-            favoriteBtnTapped()
+            
+            removeAnnotatioOnTap = false
             let vc = segue.destination as! FavoriteViewController
             vc.delegate = self
         }
     }
     
+    // MARK: - Add a place to the list of favorites
+    
     func addPoiToFavorit(){
+        if currentPoi?.favorit == true{
+            coreDataManager?.removePoiToFavorit(currentPoi)
+            return
+        }
         coreDataManager?.addPoiToFavorit(currentPoi)
     }
-        
+    
+    //MARK: - Traces the path from the user's position to the selected location
+    
+    func tracePath(){
+        mapView.removeOverlays(mapView.overlays)
+       guard let request = getRequestDirection() else { return }
+        request.transportType = .walking
+        request.requestsAlternateRoutes = false
+      let directions = MKDirections(request: request)
+        directions.calculate { [unowned self] (response, error) in
+            guard let response = response else { return }
+            let paths = response.routes
+            for path in paths {
+                self.mapView.addOverlay(path.polyline)
+                self.mapView.setVisibleMapRect(path.polyline.boundingMapRect, animated: true)
+            }
+        }
+    }
+    
+    // MARK: - create and return a direction request
+    
+    func getRequestDirection()->MKDirections.Request?{
+        guard let coordinate = locationManager.location?.coordinate else { return nil }
+        let destinationCoordinate = getCenterLocation(for: mapView).coordinate
+        let origin = MKPlacemark(coordinate: coordinate)
+        let destination = MKPlacemark(coordinate: destinationCoordinate)
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: origin)
+        request.destination = MKMapItem(placemark: destination)
+        return request
+    }
+    
+    //MARK: - return the center point coordinate of the map
+    
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let coordinates = mapView.centerCoordinate
+        return CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
+    //  MARK: - Changes the type of view according to the button selected in the segmentControl
+    
     @IBAction func typeViewSegmentChanged(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
         let mapCamera = MKMapCamera()
@@ -403,10 +479,12 @@ extension MainViewController:MKMapViewDelegate{
         case 0:
             mapView.mapType = .mutedStandard
             mapCamera.pitch = 10
-          
+            break
         case 1:
-            mapView.mapType = .mutedStandard
+            
             mapCamera.pitch = 45
+            mapView.mapType = .mutedStandard
+            break
         case 2:mapView.mapType = .satelliteFlyover
             mapView.camera = mapCamera
         default: mapView.mapType = .standard
@@ -416,23 +494,26 @@ extension MainViewController:MKMapViewDelegate{
         mapView.camera = mapCamera
     }
     
-    //MARK - positions the card at the user's location
+    //MARK - positions the map at the user's location
     
     @IBAction func locationBtnTapped(_ sender: UIBarButtonItem) {
         let span = MKCoordinateSpan.init(latitudeDelta: 0.0075, longitudeDelta: 0.0075)
         guard let location = locationManager.location else{return}
         let region = MKCoordinateRegion.init(center:(location.coordinate),span:span)
         mapView.setRegion(region, animated: true)
-     
+        
     }
+    
+    //MARK: - Zoom on a selected point
+    
     func zoomPoi(poi:Poi){
         let locationPoi = CLLocation(latitude:poi.latitude, longitude:poi.longitude)
         let  regionLongitudalMeter = 10.0
         let  regionLmatitudalMeter = 10.0
-       // mapView.mapType = .satelliteFlyover
+        // mapView.mapType = .satelliteFlyover
         let coordinRegion = MKCoordinateRegion(center:locationPoi.coordinate, latitudinalMeters:regionLongitudalMeter,longitudinalMeters:regionLmatitudalMeter)
         mapView.setRegion(coordinRegion, animated: true)
-     
+        
     }
     
 }

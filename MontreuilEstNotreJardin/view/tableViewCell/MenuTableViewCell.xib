@@ -36,7 +36,7 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                         </state>
                         <connections>
-                            <action selector="chevkboxTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gTW-IK-VWH"/>
+                            <action selector="checkboxTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Wcc-yM-nR5"/>
                         </connections>
                     </button>
                 </subviews>
