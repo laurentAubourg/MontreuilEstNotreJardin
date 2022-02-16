@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "satellite-In-Orbit-icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "satellite-In-Orbit-icon.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

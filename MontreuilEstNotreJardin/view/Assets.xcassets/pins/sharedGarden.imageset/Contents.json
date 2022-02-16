@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "sharedGarden.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "sharedGarden.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

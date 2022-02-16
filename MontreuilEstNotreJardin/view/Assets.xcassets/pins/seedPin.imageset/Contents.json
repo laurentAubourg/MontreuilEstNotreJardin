@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "seedPin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "seedPin.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

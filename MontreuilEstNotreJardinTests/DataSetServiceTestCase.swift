@@ -64,7 +64,7 @@ class DataSetServiceTestCase: XCTestCase {
     
     //MARK: III. getFacets test .nodata
     
-    func  testNoData_WhenFacetËDataIsNull_ThenReceiveNoData(){
+    func  testNoData_WhenFacetDataIsNull_ThenReceiveNoData(){
         
         URLProtocolFake.fakeURLs = [FakeResponseData.urlFacet: (nil, FakeResponseData.responseOK, FakeResponseData.error)]
         let fakeSession = URLSession(configuration: sessionConfiguration)

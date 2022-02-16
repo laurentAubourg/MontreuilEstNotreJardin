@@ -18,14 +18,10 @@
 		5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF52791A18C00AA9D1E /* coreDataManager.swift */; };
 		5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF62791A18C00AA9D1E /* CoreDataStack.swift */; };
 		5689100D2791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */; };
-		5689100E2791A18C00AA9D1E /* mapTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */; };
-		5689100F2791A18C00AA9D1E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */; };
 		568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */; };
 		568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */; };
 		568910122791A18C00AA9D1E /* URLSession+GenericCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */; };
 		568910132791A18C00AA9D1E /* UIView+border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910002791A18C00AA9D1E /* UIView+border.swift */; };
-		568910142791A18C00AA9D1E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910012791A18C00AA9D1E /* StringExtension.swift */; };
-		568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */; };
 		568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910032791A18C00AA9D1E /* tableViewExtension.swift */; };
 		568910182791A18C00AA9D1E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568910062791A18C00AA9D1E /* MainViewController.swift */; };
 		569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569825D5279B0131008ABDC1 /* PoiAnnotation.swift */; };
@@ -38,6 +34,10 @@
 		56F7B88427B1603E0046BD76 /* Pois.json in Resources */ = {isa = PBXBuildFile; fileRef = 56F7B88327B1603E0046BD76 /* Pois.json */; };
 		56F7B88627B160D50046BD76 /* UrlProtocolFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88527B160D50046BD76 /* UrlProtocolFake.swift */; };
 		56F7B88927B162090046BD76 /* DataSetServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */; };
+		56F7B88B27B18D7C0046BD76 /* coreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88A27B18D7C0046BD76 /* coreDataManagerTest.swift */; };
+		56F7B88D27B18E970046BD76 /*  MockCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88C27B18E970046BD76 /*  MockCoreDataStack.swift */; };
+		56F7B88F27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B88E27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift */; };
+		56F7B89127B2CCFE0046BD76 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B89027B2CCFE0046BD76 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,14 +67,10 @@
 		56890FF52791A18C00AA9D1E /* coreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = coreDataManager.swift; sourceTree = "<group>"; };
 		56890FF62791A18C00AA9D1E /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MontreuilEstNotreJardin.xcdatamodel; sourceTree = "<group>"; };
-		56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mapTest.xcdatamodel; sourceTree = "<group>"; };
-		56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlBuildable.swift; sourceTree = "<group>"; };
 		56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+GenericCall.swift"; sourceTree = "<group>"; };
 		568910002791A18C00AA9D1E /* UIView+border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+border.swift"; sourceTree = "<group>"; };
-		568910012791A18C00AA9D1E /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlSessionCancelable.swift; sourceTree = "<group>"; };
 		568910032791A18C00AA9D1E /* tableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewExtension.swift; sourceTree = "<group>"; };
 		568910062791A18C00AA9D1E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		569825D5279B0131008ABDC1 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
@@ -87,6 +83,10 @@
 		56F7B88327B1603E0046BD76 /* Pois.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Pois.json; sourceTree = "<group>"; };
 		56F7B88527B160D50046BD76 /* UrlProtocolFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlProtocolFake.swift; sourceTree = "<group>"; };
 		56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSetServiceTestCase.swift; sourceTree = "<group>"; };
+		56F7B88A27B18D7C0046BD76 /* coreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coreDataManagerTest.swift; sourceTree = "<group>"; };
+		56F7B88C27B18E970046BD76 /*  MockCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " MockCoreDataStack.swift"; sourceTree = "<group>"; };
+		56F7B88E27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.MapKitDelegat.extension.swif.swift; sourceTree = "<group>"; };
+		56F7B89027B2CCFE0046BD76 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +145,8 @@
 				56F7B88127B15F680046BD76 /* facet.json */,
 				56F7B88327B1603E0046BD76 /* Pois.json */,
 				56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */,
+				56F7B88A27B18D7C0046BD76 /* coreDataManagerTest.swift */,
+				56F7B88C27B18E970046BD76 /*  MockCoreDataStack.swift */,
 			);
 			path = MontreuilEstNotreJardinTests;
 			sourceTree = "<group>";
@@ -173,7 +175,6 @@
 				56890FF52791A18C00AA9D1E /* coreDataManager.swift */,
 				56890FF62791A18C00AA9D1E /* CoreDataStack.swift */,
 				56890FF72791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld */,
-				56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */,
 			);
 			path = coreData;
 			sourceTree = "<group>";
@@ -181,14 +182,13 @@
 		56890FFB2791A18C00AA9D1E /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				56890FFC2791A18C00AA9D1E /* UIImageViewExtension.swift */,
+				56F7B89027B2CCFE0046BD76 /* StringExtension.swift */,
 				56890FFD2791A18C00AA9D1E /* UrlBuildable.swift */,
 				56890FFE2791A18C00AA9D1E /* ViewControllerExtension.swift */,
 				56890FFF2791A18C00AA9D1E /* URLSession+GenericCall.swift */,
 				568910002791A18C00AA9D1E /* UIView+border.swift */,
-				568910012791A18C00AA9D1E /* StringExtension.swift */,
-				568910022791A18C00AA9D1E /* UrlSessionCancelable.swift */,
 				568910032791A18C00AA9D1E /* tableViewExtension.swift */,
+				56F7B88E27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -352,23 +352,21 @@
 			files = (
 				568910122791A18C00AA9D1E /* URLSession+GenericCall.swift in Sources */,
 				568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */,
-				568910142791A18C00AA9D1E /* StringExtension.swift in Sources */,
 				569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */,
 				56AF181127999BB0009A0B08 /* MenuTableViewCell.swift in Sources */,
-				5689100F2791A18C00AA9D1E /* UIImageViewExtension.swift in Sources */,
 				5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */,
 				5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */,
+				56F7B88F27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift in Sources */,
 				568910182791A18C00AA9D1E /* MainViewController.swift in Sources */,
 				563FCBE427A435B400EFAC61 /* infosViewController.swift in Sources */,
-				568910152791A18C00AA9D1E /* UrlSessionCancelable.swift in Sources */,
 				568910162791A18C00AA9D1E /* tableViewExtension.swift in Sources */,
 				568910132791A18C00AA9D1E /* UIView+border.swift in Sources */,
-				5689100E2791A18C00AA9D1E /* mapTest.xcdatamodeld in Sources */,
 				564A745927ABFEFC00974848 /* FavoriteViewController.swift in Sources */,
 				568910092791A18C00AA9D1E /* DataSetService.swift in Sources */,
 				56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */,
 				568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */,
 				56890FC12791A04700AA9D1E /* SceneDelegate.swift in Sources */,
+				56F7B89127B2CCFE0046BD76 /* StringExtension.swift in Sources */,
 				56CDF4DE27AC0EAD004F6C78 /* FavoriteTableViewCell.swift in Sources */,
 				5689100D2791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodeld in Sources */,
 			);
@@ -378,8 +376,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56F7B88D27B18E970046BD76 /*  MockCoreDataStack.swift in Sources */,
 				56F7B88927B162090046BD76 /* DataSetServiceTestCase.swift in Sources */,
 				56F7B88627B160D50046BD76 /* UrlProtocolFake.swift in Sources */,
+				56F7B88B27B18D7C0046BD76 /* coreDataManagerTest.swift in Sources */,
 				56F7B88027B13C7A0046BD76 /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,16 +676,6 @@
 			);
 			currentVersion = 56890FF82791A18C00AA9D1E /* MontreuilEstNotreJardin.xcdatamodel */;
 			path = MontreuilEstNotreJardin.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		56890FF92791A18C00AA9D1E /* mapTest.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */,
-			);
-			currentVersion = 56890FFA2791A18C00AA9D1E /* mapTest.xcdatamodel */;
-			path = mapTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

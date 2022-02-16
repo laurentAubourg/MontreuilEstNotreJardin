@@ -24,7 +24,7 @@ class FavoriteViewController: UIViewController {
         coreDataManager = CoreDataManager(coreDataStack:appdelegate.coreDataStack)
         tableView.delegate = self
         tableView.dataSource = self
-        guard let favorites = coreDataManager?.getFavoritesPoi() else{
+        guard let favorites = coreDataManager?.favoritesPois  else{
             return}
         favoritePois = favorites
         tableView.reloadData()

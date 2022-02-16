@@ -6,7 +6,7 @@
 //
 //
 import Foundation
-final class DataSetService:UrlSessionCancelable,UrlBuildable{
+final class DataSetService:UrlBuildable{
     
     //MARK: - properties
     
@@ -20,9 +20,7 @@ final class DataSetService:UrlSessionCancelable,UrlBuildable{
         self.session = session
     }
     
-    // MARK: - Request to the API to ask for the available languages
-    
-
+     
     
     // MARK: -  Recover all facets
     
@@ -111,7 +109,7 @@ struct Pointgeo:Decodable{
 }
 // MARK: decodable struct for Records list
 
-struct Record: Decodable {
+struct Record: Decodable{
     let id: String?
     let fields:field?
 }

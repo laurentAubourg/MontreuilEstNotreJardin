@@ -28,8 +28,6 @@ class MenuTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
      
-       // checkboxTapped(nil)
-        // Configure the view for the selected state
     }
     
     @IBAction func checkboxTapped(_ sender: UIButton?) {

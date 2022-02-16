@@ -38,8 +38,22 @@ final class CoreDataManager {
         return pois
     }
     
-    
-    
+    var selectedCategories:[Category]?{
+        
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
+        request.predicate =  NSPredicate(format:"selected == %@",NSNumber(value: true))
+        
+        let  selectedCategories = try! managedObjectContext.fetch(request)
+        return selectedCategories
+    }
+    var favoritesPois:[Poi]{
+        let request: NSFetchRequest<Poi> = Poi.fetchRequest()
+        let predicate = NSPredicate(format:"favorit == %@",NSNumber(value: true))
+        request.predicate =  predicate
+        let  selectedPoi = try! managedObjectContext.fetch(request)
+        return selectedPoi
+        
+    }
     // MARK: - Manage  Categories
     
     func addCategorie(name: String,nbRecords:Int32,state:String) {
@@ -76,118 +90,57 @@ final class CoreDataManager {
         for category in categories{
             unselectCategory(category)
         }
-  
+        
         
     }
-    //MARK: - Retrieves the selected categories
     
-    func getSelectedCategories()->[Category]?{
-        
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.predicate =  NSPredicate(format:"selected == %@",NSNumber(value: true))
-       
-      let  selectedCategories = try! managedObjectContext.fetch(request)
-        return selectedCategories
-    }
-    
-  
     // MARK: - Manage  Point of Interest
     
     func addPoi(categorie:Category,pois:[Records]) {
-        for pointData:Records in pois{
-            guard pointData.record != nil else{continue}
-            let record:Record = pointData.record!
-            var id:String
-            var longitude:Double
-            var latitude:Double
-            var name:String
-            var address: String
-            let email:String
-            var telephon:String
-            if record.id != nil{
-                id = record.id!
-            }else{
-                id = ""
-            }
-            if record.fields != nil{
-                let fields = record.fields!
-                guard fields.name != nil else{
-                    continue
-                }
-                name = fields.name!
-                if fields.address != nil {
-                    address = fields.address!
-                }else{
-                    continue
-                }
-                if fields.telephon != nil {
-                    telephon = fields.telephon!
-                }else{
-                    telephon = "NC"
-                }
-                if fields.email != nil {
-                    email = fields.email!
-                }else{
-                    continue
-                }
-                guard fields.pointgeo != nil else{continue}
-                let point = fields.pointgeo
-                
-                
-                if (fields.telephon != nil){
-                    telephon = fields.telephon!
-                }
-                
-                
-                longitude = (point?.longitude)!
-                latitude = (point?.latitude)!
-                
-                let poi = Poi(context: managedObjectContext)
-                poi.category = categorie
-                poi.id = id
-                poi.latitude = latitude
-                poi.address = address
-                poi.longitude = longitude
-                poi.name = name
-                poi.email = email
-                poi.telephon = telephon
-                coreDataStack.saveContext()
-            }else{
-                continue
-            }
+        for poiData:Records in pois{
+            guard poiData.record != nil else{continue}
+            guard let record:Record = poiData.record else {continue}
+            let id = record.id
+            guard  let fields = record.fields else{continue}
+            let name = fields.name
+            let address = fields.address
+            let telephon = fields.telephon
+            let email = fields.email
+            let point = fields.pointgeo
+            let longitude = (point?.longitude) ?? -1.0
+            let latitude = (point?.latitude) ?? -1.0
+            guard (latitude != -1.0 && longitude != -1.0) else{continue}
+            let poi = Poi(context: managedObjectContext)
+            poi.category = categorie
+            poi.id = id
+            poi.latitude = latitude
+            poi.address = address
+            poi.longitude = longitude
+            poi.name = name
+            poi.email = email
+            poi.telephon = telephon
+            coreDataStack.saveContext()
+            
         }
     }
-    func deleteAllpois() {
-        pois.forEach { managedObjectContext.delete($0) }
-        coreDataStack.saveContext()
-        
-    }
-    func deletePoi(elem:Poi) {
-        managedObjectContext.delete(elem)
-        coreDataStack.saveContext()
-        
-    }
-    func getPoiByLocation(longitude:Double,latitude:Double)->Poi{
+   
+    func getPoiByLocation(longitude:Double,latitude:Double)->Poi?{
         let request: NSFetchRequest<Poi> = Poi.fetchRequest()
         let predicate = NSPredicate(format: "longitude = %@ AND latitude = %@", NSNumber(value: longitude), NSNumber(value: latitude))
         request.predicate =  predicate
-        let  selectedPoi = try! managedObjectContext.fetch(request)
-        return selectedPoi[0]
+        let  selectedPoi = try? managedObjectContext.fetch(request)
+        guard (selectedPoi?.count)! > 0 else{return nil}
+       
+        return selectedPoi![0]
+       
     }
-    func getFavoritesPoi()->[Poi]{
-        let request: NSFetchRequest<Poi> = Poi.fetchRequest()
-        let predicate = NSPredicate(format:"favorit == %@",NSNumber(value: true))
-        request.predicate =  predicate
-        let  selectedPoi = try! managedObjectContext.fetch(request)
-        return selectedPoi
-        
-    }
-    func addPoiToFavorit(_ poi:Poi?){
+   
+    func addPoiToFavorit(poi:Poi?){
         guard poi != nil else{return}
         poi!.favorit = true
         coreDataStack.saveContext()
     }
-    func removePoiToFavorit(_ poi:Poi?){
+    func removePoiToFavorit(poi:Poi?){
         guard poi != nil else{return}
         poi!.favorit = false
         coreDataStack.saveContext()
@@ -196,24 +149,27 @@ final class CoreDataManager {
     
     func getCategoryPinIcon(_ poiCategory:String)-> String{
         var pinIcon = ""
-        switch poiCategory{
-        case "Arbre à fruits comestibles": pinIcon = "treePin"
-        case "Espace adopté": pinIcon = "adoptedPin"
-        case "Espace adopté (ophm)": pinIcon = "adoptedPin"
-        case "Jardins familiaux": pinIcon = "familyGardenPin"
-        case "Jardin partagé": pinIcon = "sharedGarden"
-        case "Label Jardins Remarquables": pinIcon = "gardenPin"
-        case "Micro ferme urbaine": pinIcon = "greenMapPin"
-        case "Micro-espace on sème": pinIcon = "seedPin"
-        case "Parc": pinIcon = "parkPin"
-        case "Site en gestion différenciée": pinIcon = "greenMapPin"
-        case "Square": pinIcon = "greenMapPin"
-        case "abri pour la faune": pinIcon = "animalPin"
-        case "arbre": pinIcon = "treePin"
-        case "jardin associatif": pinIcon = "gardenPin"
-        default: pinIcon = "greenMapPin"
-        }
+        let dicIcon=["Arbre à fruits comestibles":  "fruitTree",
+                     "Espace adopté":"adoptedPin",
+                     "Espace adopté (ophm)":"adoptedPin",
+                     "Jardins familiaux":"familyGardenPin",
+                     "Jardin partagé": "sharedGarden",
+                     "Label Jardins Remarquables": "remarkableGarden",
+                     "Micro ferme urbaine": "microFarm",
+                     "Micro-espace on sème":"seedPin",
+                     "Parc": "parkPin",
+                     "Site en gestion différenciée":"differentiatedManagement",
+                     "Square":"square",
+                     "abri pour la faune":"animalPin",
+                     "arbre": "treePin",
+                     "jardin associatif":"associatifGarden",
+                     "jardin associatif des murs à pêches":"associatifGarden",
+                     "default":  "default"
+        ]
+        guard let pinIcon =  dicIcon[poiCategory] else{
+            return dicIcon["default"]! }
         return pinIcon
+    
     }
 }
 
