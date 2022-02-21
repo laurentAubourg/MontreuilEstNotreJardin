@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		561B70B727BE526E005D43FF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B70B627BE526E005D43FF /* HomeViewController.swift */; };
+		561B70B927BE55E4005D43FF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B70B827BE55E4005D43FF /* WebViewController.swift */; };
+		563F6E2F27C38F2400AF9E0D /* resources.json in Resources */ = {isa = PBXBuildFile; fileRef = 563F6E2E27C38F2400AF9E0D /* resources.json */; };
 		563FCBE427A435B400EFAC61 /* infosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563FCBE327A435B400EFAC61 /* infosViewController.swift */; };
 		564A745927ABFEFC00974848 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564A745827ABFEFC00974848 /* FavoriteViewController.swift */; };
 		56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56890FBE2791A04700AA9D1E /* AppDelegate.swift */; };
@@ -27,6 +30,8 @@
 		569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569825D5279B0131008ABDC1 /* PoiAnnotation.swift */; };
 		56AF181127999BB0009A0B08 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF180F27999BB0009A0B08 /* MenuTableViewCell.swift */; };
 		56AF181227999BB0009A0B08 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */; };
+		56C6F67927C14A0700AB9030 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C6F67727C14A0700AB9030 /* HomeTableViewCell.swift */; };
+		56C6F67A27C14A0700AB9030 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C6F67827C14A0700AB9030 /* HomeTableViewCell.xib */; };
 		56CDF4DE27AC0EAD004F6C78 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CDF4DC27AC0EAD004F6C78 /* FavoriteTableViewCell.swift */; };
 		56CDF4DF27AC0EAD004F6C78 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CDF4DD27AC0EAD004F6C78 /* FavoriteTableViewCell.xib */; };
 		56F7B88027B13C7A0046BD76 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7B87F27B13C7A0046BD76 /* FakeResponseData.swift */; };
@@ -51,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		561B70B627BE526E005D43FF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		561B70B827BE55E4005D43FF /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		563F6E2E27C38F2400AF9E0D /* resources.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = resources.json; sourceTree = "<group>"; };
 		563FCBE327A435B400EFAC61 /* infosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infosViewController.swift; sourceTree = "<group>"; };
 		564A745827ABFEFC00974848 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		56890FBB2791A04700AA9D1E /* MontreuilEstNotreJardin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontreuilEstNotreJardin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +84,8 @@
 		569825D5279B0131008ABDC1 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		56AF180F27999BB0009A0B08 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		56C6F67727C14A0700AB9030 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		56C6F67827C14A0700AB9030 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		56CDF4DC27AC0EAD004F6C78 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		56CDF4DD27AC0EAD004F6C78 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		56F7B87F27B13C7A0046BD76 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
@@ -143,6 +153,7 @@
 			children = (
 				56F7B88727B161440046BD76 /* helpers */,
 				56F7B88127B15F680046BD76 /* facet.json */,
+				563F6E2E27C38F2400AF9E0D /* resources.json */,
 				56F7B88327B1603E0046BD76 /* Pois.json */,
 				56F7B88827B162080046BD76 /* DataSetServiceTestCase.swift */,
 				56F7B88A27B18D7C0046BD76 /* coreDataManagerTest.swift */,
@@ -200,6 +211,8 @@
 				568910062791A18C00AA9D1E /* MainViewController.swift */,
 				563FCBE327A435B400EFAC61 /* infosViewController.swift */,
 				564A745827ABFEFC00974848 /* FavoriteViewController.swift */,
+				561B70B627BE526E005D43FF /* HomeViewController.swift */,
+				561B70B827BE55E4005D43FF /* WebViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -232,6 +245,8 @@
 				56CDF4DC27AC0EAD004F6C78 /* FavoriteTableViewCell.swift */,
 				56CDF4DD27AC0EAD004F6C78 /* FavoriteTableViewCell.xib */,
 				56AF181027999BB0009A0B08 /* MenuTableViewCell.xib */,
+				56C6F67727C14A0700AB9030 /* HomeTableViewCell.swift */,
+				56C6F67827C14A0700AB9030 /* HomeTableViewCell.xib */,
 			);
 			path = tableViewCell;
 			sourceTree = "<group>";
@@ -330,6 +345,7 @@
 				56AF181227999BB0009A0B08 /* MenuTableViewCell.xib in Resources */,
 				56CDF4DF27AC0EAD004F6C78 /* FavoriteTableViewCell.xib in Resources */,
 				56890FCB2791A04800AA9D1E /* Assets.xcassets in Resources */,
+				56C6F67A27C14A0700AB9030 /* HomeTableViewCell.xib in Resources */,
 				56890FC62791A04700AA9D1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563F6E2F27C38F2400AF9E0D /* resources.json in Resources */,
 				56F7B88427B1603E0046BD76 /* Pois.json in Resources */,
 				56F7B88227B15F680046BD76 /* facet.json in Resources */,
 			);
@@ -354,6 +371,8 @@
 				568910102791A18C00AA9D1E /* UrlBuildable.swift in Sources */,
 				569825D6279B0131008ABDC1 /* PoiAnnotation.swift in Sources */,
 				56AF181127999BB0009A0B08 /* MenuTableViewCell.swift in Sources */,
+				561B70B927BE55E4005D43FF /* WebViewController.swift in Sources */,
+				561B70B727BE526E005D43FF /* HomeViewController.swift in Sources */,
 				5689100C2791A18C00AA9D1E /* CoreDataStack.swift in Sources */,
 				5689100B2791A18C00AA9D1E /* coreDataManager.swift in Sources */,
 				56F7B88F27B2C4B00046BD76 /* MainViewController.MapKitDelegat.extension.swif.swift in Sources */,
@@ -364,6 +383,7 @@
 				564A745927ABFEFC00974848 /* FavoriteViewController.swift in Sources */,
 				568910092791A18C00AA9D1E /* DataSetService.swift in Sources */,
 				56890FBF2791A04700AA9D1E /* AppDelegate.swift in Sources */,
+				56C6F67927C14A0700AB9030 /* HomeTableViewCell.swift in Sources */,
 				568910112791A18C00AA9D1E /* ViewControllerExtension.swift in Sources */,
 				56890FC12791A04700AA9D1E /* SceneDelegate.swift in Sources */,
 				56F7B89127B2CCFE0046BD76 /* StringExtension.swift in Sources */,

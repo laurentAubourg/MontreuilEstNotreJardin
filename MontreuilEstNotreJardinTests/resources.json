@@ -1,0 +1,16 @@
+
+[{
+  "title": "la carte interactive",
+  "type": "intern",
+  "icon": "map2dSymbol",
+  "comment": "Lieux de nature et de jardinage à Montreuil\nLocalisez les lieux de nature et tracez votre itinéraire",
+  "segue": "segueViewMap"
+},
+  {
+  "title": "Montreuil est notre jardin",
+   "type": "video",
+  "icon": "montreuil-jardin-caroussel",
+  "comment": "Présentation du projet municipal  Montreuil est notre jardin",
+  "segue": "segueViewSite"
+}
+]

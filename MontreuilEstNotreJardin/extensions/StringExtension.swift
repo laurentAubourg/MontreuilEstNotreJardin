@@ -15,3 +15,6 @@ extension String {
         return self.trimmingCharacters(in: .whitespaces) == String() ? true : false
     }
 }
+/*
+La ville de Montreil met à disposition un ensemble de jeux de données ouvertes ÷n L'un de ceux ci est consacré aux espaces végétalisés, aux jardins partagés
+*/

@@ -18,9 +18,14 @@ final class DataSetService:UrlBuildable{
     
     init(session:URLSession = URLSession(configuration: .default)){
         self.session = session
+      
     }
     
-     
+    func getResources( callback: @escaping( Result<[Resource],NetworkError>)->Void) {
+        let url:URL = URL(string: "https://parsoflex.info/oc/menj.json")!
+        session.dataTask(with: url, callback: callback)
+        return
+    }
     
     // MARK: -  Recover all facets
     
@@ -124,6 +129,22 @@ struct PoiResponse: Decodable {
         
     }
 }
+    // MARK: decodable struct for Resource list
+
+    struct Resource: Decodable{
+        let title: String
+        let type: String
+        let icon:String
+        let comment:String
+        let segue:String
+    }
+
+    // MARK: - ResourcesResponse
+
+    struct ResourcesResponse: Decodable {
+        let ressources :Resource
+    }
+
 
 
 

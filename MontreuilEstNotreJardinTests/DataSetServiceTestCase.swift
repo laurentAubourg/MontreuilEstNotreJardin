@@ -193,6 +193,92 @@ class DataSetServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
+    //MARK: X getResources  test invalidData
+    
+    func  testDataIsIncorrect_WhenGetResourcesThenReceiveUndecodableData(){
+        
+        URLProtocolFake.fakeURLs = [FakeResponseData.urlResource: (FakeResponseData.incorrectData, FakeResponseData.responseOK, nil)]
+        let fakeSession = URLSession(configuration: sessionConfiguration)
+        let sut: DataSetService = .init(session: fakeSession)
+        
+        let expectation = XCTestExpectation(description: "Waiting...change threat")
+        sut.getResources() { result in
+            
+            guard case .failure(let error) = result else {
+                XCTFail("Test failed: \(#function)")
+                return
+            }
+            XCTAssertTrue(error == .undecodableData)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
  
+    //MARK: XI. getPois  test invalidResponse
+    
+    func  testInvalidResponse_WhengetResources_ThenReceiveInvalidResponse(){
+        
+        URLProtocolFake.fakeURLs = [FakeResponseData.urlResource: (FakeResponseData.resourcesCorrectData, FakeResponseData.responseKO, nil)]
+        let fakeSession = URLSession(configuration: sessionConfiguration)
+        let sut: DataSetService = .init(session: fakeSession)
+        
+        let expectation = XCTestExpectation(description: "Waiting...")
+        sut.getResources() {  result in
+            
+            guard case .failure(let error) = result else {
+                XCTFail("Test failed: \(#function)")
+                return
+            }
+            XCTAssertTrue(error == .invalidResponse)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    //MARK: XIII. getResources test .nodata
+    
+    func  testNoData_WhenResourceDataIsNull_ThenReceiveNoData(){
+        
+        URLProtocolFake.fakeURLs = [FakeResponseData.urlResource: (nil, FakeResponseData.responseOK, FakeResponseData.error)]
+        let fakeSession = URLSession(configuration: sessionConfiguration)
+        let sut: DataSetService = .init(session: fakeSession)
+        
+        let expectation = XCTestExpectation(description: "Waiting...")
+        sut.getResources()  { result in
+            
+            guard case .failure(let error) = result else {
+                XCTFail("Test failed: \(#function)")
+                return
+            }
+            XCTAssertTrue(error == .noData)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    //MARK: XIV  getResources test data and response are OK
+    
+    func  testData_WhenResourcesDataIsCorrect_ThenReceiveData(){
+        
+        URLProtocolFake.fakeURLs = [FakeResponseData.urlResource: (FakeResponseData.resourcesCorrectData, FakeResponseData.responseOK, nil)]
+        let fakeSession = URLSession(configuration: sessionConfiguration)
+        let sut: DataSetService = .init(session: fakeSession)
+        
+        let expectation = XCTestExpectation(description: "Waiting...")
+        sut.getResources() { result in
+            switch result {
+            case .success(_):
+                XCTAssertTrue(true)
+            case .failure( let error):
+                XCTFail("Test failed: \(error)")
+                return
+            }
+       
+           
+          
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
 }
 
