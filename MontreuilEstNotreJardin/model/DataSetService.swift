@@ -21,6 +21,8 @@ final class DataSetService:UrlBuildable{
       
     }
     
+    //MARK: - get the ressources of the home page from parsoflex server
+    
     func getResources( callback: @escaping( Result<[Resource],NetworkError>)->Void) {
         let url:URL = URL(string: "https://parsoflex.info/oc/menj.json")!
         session.dataTask(with: url, callback: callback)
@@ -37,8 +39,7 @@ final class DataSetService:UrlBuildable{
     
     // MARK: - Request to the API - Retrieve POIs for a category
     
-    func getPoi(for categorie:String = "",nbRecords:Int, callback: @escaping( Result<PoiResponse,NetworkError>)->Void) {
-        
+    func getPoi(for categorie:String = "",nbRecords:Int, callback: @escaping( Result<PoiResponse,NetworkError>)->Void){
         let baseUrl:String = "https://data.montreuil.fr/api/v2/catalog/datasets/montreuil-est-notre-jardin/records/"
         let queryItem:[[String:String]] = [["name":"refine","value":"categorie:\(categorie)"],
                                             ["name":"rows","value":"100"]]
@@ -80,6 +81,9 @@ struct Records: Decodable {
         case record
     }
 }
+
+//MARKS: - fields of the POI
+
 struct field:Decodable{
     let name:String?
     let categorie:String?
@@ -102,6 +106,9 @@ struct field:Decodable{
         case pointgeo
     }
 }
+
+//Pointgeo of the POI
+
 struct Pointgeo:Decodable{
     let longitude:Double?
     let latitude:Double?
@@ -112,6 +119,7 @@ struct Pointgeo:Decodable{
         
     }
 }
+
 // MARK: decodable struct for Records list
 
 struct Record: Decodable{
@@ -133,7 +141,7 @@ struct PoiResponse: Decodable {
 
     struct Resource: Decodable{
         let title: String
-        let type: String
+        let url:String
         let icon:String
         let comment:String
         let segue:String

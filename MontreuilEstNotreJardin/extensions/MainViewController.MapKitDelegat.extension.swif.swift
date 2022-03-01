@@ -5,14 +5,14 @@
 //  Created by laurent aubourg on 08/02/2022.
 //
 
-import Foundation
 import MapKit
 import CoreLocation
 
-//MARK: - -----------  MapkitDelegate EXTENSION-----------------
+//MARK: - -----------  MapkitDelegate EXTENSION MKMapViewDelegate-----------------
 
 extension MainViewController:MKMapViewDelegate{
-    
+  
+    // MARK: - initialize the mapView
     func mapKitInit(){
         mapView.delegate = self
         mapView.mapType = .standard
@@ -22,35 +22,23 @@ extension MainViewController:MKMapViewDelegate{
         mapView.showsBuildings = true
         mapView.isPitchEnabled = true
         locationManager.requestWhenInUseAuthorization()
-        
         let  regionLongitudalMeter = 5000.0
         let  regionLmatitudalMeter = 5000.0
         let coordinRegion = MKCoordinateRegion(center:locationBase.coordinate, latitudinalMeters:regionLongitudalMeter,longitudinalMeters:regionLmatitudalMeter)
         mapView.setRegion(coordinRegion, animated: true)
         mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: coordinRegion),animated: true)
-        let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance:5000.000)
+        let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance:1000.000)
         mapView.setCameraZoomRange(zoomRange, animated: true)
         // create a 3D Camera
         let mapCamera = MKMapCamera()
         mapCamera.centerCoordinate = locationBase.coordinate
-        mapCamera.pitch = 0
-        mapCamera.altitude = 800
-        mapCamera.heading = 30
-        
+        mapCamera.altitude = 500
         // set the camera property
         mapView.camera = mapCamera
+        mapView?.showsTraffic = false
     }
     
-    //Mark: Draws the line between the user's location and the selected point
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        renderer.strokeColor = .red
-        renderer.lineWidth = 5
-        return renderer
-    }
-    
-    //Mark: ANNOTATIONS
+    //Mark: remove an annotation on the mapView
     
     func removeAllAnnotation(){
         let annotations = mapView.annotations.filter({ !($0 is MKUserLocation) })
@@ -61,12 +49,11 @@ extension MainViewController:MKMapViewDelegate{
     
     func addSelectedPoiAnnotation(){
         removeAllAnnotation()
+        closePath()
         let  SelectedAnnotations = coreDataManager?.selectedCategories
         guard  SelectedAnnotations!.count > 0 else{return}
-        
         for cat:Category in Array(SelectedAnnotations!){
             let pois = cat.poi!.allObjects as! [Poi]
-            
             guard cat.name != nil else{return}
             for poi in pois{
                 let annotation = createAnotation(poi: poi,category: cat)
@@ -88,9 +75,13 @@ extension MainViewController:MKMapViewDelegate{
         let annotation = PoiAnnotation(category:category.name!,title: title!, coordinate:CLLocationCoordinate2D(latitude:latitude, longitude: longitude), info: info)
         return annotation
     }
+    
+    //MARK add an annotation on the mapView
+    
     func addAnnotation(annotation:PoiAnnotation){
         mapView.addAnnotation(annotation)
     }
+    
     //MARK: get Poi entity where longitude and latitude parameers corresponding to those sought
     
     func getPoiByLocation(longitude:Double,latitude:Double)->Poi?{
@@ -105,11 +96,9 @@ extension MainViewController:MKMapViewDelegate{
         if !(annotation is PoiAnnotation) {
             return nil
         }
-        
         let annotationIdentifier = "AnnotationIdentifier"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        
-        if annotationView == nil {
+       if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView!.canShowCallout = true
         }
@@ -122,12 +111,10 @@ extension MainViewController:MKMapViewDelegate{
         annotationView!.canShowCallout = true
         annotationView!.calloutOffset = CGPoint(x: -5, y: 5)
         annotationView!.rightCalloutAccessoryView = UIButton(type:.infoLight)
-        
         return annotationView
     }
     
     // MARK: - alert Info when clic annotation button
-    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let poiCoordinate = (view.annotation as! PoiAnnotation).coordinate
@@ -135,29 +122,27 @@ extension MainViewController:MKMapViewDelegate{
         performSegue(withIdentifier: "annotationsInfos", sender: nil)
     }
     
-    //MARK: - PopUp Segue
+    //MARK: - function launched when a segment is called
     
     override   func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         
         if segue.identifier == "annotationsInfos"
         {
-            let vc = segue.destination as! infosViewController
+            let vc = segue.destination as! detailPoiViewController
+            vc.modalPresentationStyle = .formSheet
+            vc.preferredContentSize = .init(width: 500, height: 350)
             vc.poi = currentPoi
             vc.delegate = self
             
         }else if(segue.identifier == "showDelegate"){
             
             removeAnnotatioOnTap = false
-            let vc = segue.destination as! FavoriteViewController
+            let vc = segue.destination as! FavoritViewController
             vc.delegate = self
         }
     }
-    
-  
-    
-
-    
+   
     //MARK - positions the map at the user's location
     
     @IBAction func locationBtnTapped(_ sender: UIBarButtonItem) {
@@ -167,7 +152,7 @@ extension MainViewController:MKMapViewDelegate{
         mapView.setRegion(region, animated: true)
         
     }
-   
+    
     //MARK: - Zoom on a selected point
     
     func zoomPoi(poi:Poi){
@@ -178,12 +163,12 @@ extension MainViewController:MKMapViewDelegate{
         mapView.setRegion(coordinRegion, animated: true)
         
     }
+    
     // MARK: - create and return a direction request
     
     func getRequestDirection()->MKDirections.Request?{
         guard let coordinate = locationManager.location?.coordinate else { return nil }
         guard let poi = currentPoi else{return nil}
-      //  let destinationCoordinate = getCenterLocation(for: mapView).coordinate
         let destinationCoordinate = CLLocationCoordinate2D(latitude:poi.latitude, longitude: poi.longitude)
         let origin = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
@@ -200,65 +185,92 @@ extension MainViewController:MKMapViewDelegate{
         return CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
     
-    //  MARK: - Changes the type of view according to the button selected in the segmentControl
-    
-    @IBAction func typeViewSegmentChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        let mapCamera = MKMapCamera()
-        mapCamera.centerCoordinate = mapView.centerCoordinate
-        mapCamera.altitude = mapView.camera.altitude
-        switch selectedIndex{
-        case 0:
-            mapView.mapType = .mutedStandard
-            mapCamera.pitch = 0
-            
-        case 1:
-            
-            mapCamera.pitch = 45
-            mapView.mapType = .mutedStandard
-           
-        case 2:
-            mapCamera.pitch = 60
-            
-            mapView.mapType = .satelliteFlyover
-           
-        default: mapView.mapType = .standard
-            break
-            
-        }
-        mapView.camera = mapCamera
-    }
-
     
     //MARK: - Traces the path from the user's position to the selected location
     
     func tracePath(){
-        mapView.removeOverlays(mapView.overlays)
-       guard let request = getRequestDirection() else { return }
+        self.pathInstruction = []
+        removePath()
+        // Delete annotations before adding new ones
+        mapView.removeAnnotations(mapView.annotations)
+       // Adds new annotations
+        let annotation = self.createAnotation(poi: currentPoi!,category: (currentPoi?.category)!)
+        addAnnotation(annotation: annotation)
+        guard let request = getRequestDirection() else { return }
         request.transportType = .walking
         request.requestsAlternateRoutes = false
-      let directions = MKDirections(request: request)
+        let directions = MKDirections(request: request)
         directions.calculate { [unowned self] (response, error) in
             guard let response = response else { return }
             let paths = response.routes
+           
             for path in paths {
                 self.mapView.addOverlay(path.polyline)
-                self.mapView.setVisibleMapRect(path.polyline.boundingMapRect, animated: true)
+                self.mapView.setVisibleMapRect(path.polyline.boundingMapRect,edgePadding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), animated: true)
+                let steps  = Array(path.steps)
+                for step in steps{
+                    if step.distance > 0{
+                        self.pathInstruction.append("dans \(step.distance.rounded() ) mètres \(step.instructions) " )
+                        
+                    }else{
+                        self.pathInstruction.append("\(step.instructions) " )
+                    }
+                    self.pathCoordinate.append(step.polyline.coordinate)
+                    }
+                
+                openpath()
+                pthBtn.isHidden = false
+                pathTableView.reloadData()
+              
             }
         }
+     
     }
+    
+    //Mark: Draws the line between the user's location and the selected point
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .red
+        renderer.lineWidth = 5
+        return renderer
+    }
+  
+    //MARK: remove the path on the map
+    
+    func removePath(){
+        mapView.removeOverlays(mapView.overlays)
+    }
+    
+    // MARK: - change the map display in satellite standard
+    
     @IBAction func mode2DTapped(_ sender: Any) {
-    
+        
         mapView.camera.centerCoordinate = mapView.centerCoordinate
-        mapView.mapType = .mutedStandard
-        mapView.camera.pitch = 45
-       
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.mapType = .standard
+        mapView.camera.pitch = 0
+        
     }
     
+    // MARK: - change the map display in satellite mode
     
     @IBAction func modeStaliteTapped(_ sender: Any) {
         mapView.camera.centerCoordinate = mapView.centerCoordinate
-        mapView.mapType = .satelliteFlyover
-        mapView.camera.pitch = 60
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.mapType = .hybridFlyover
+        mapView.camera.pitch = 240
+    }
+}
+public extension MKMultiPoint {
+    var coordinates: [CLLocationCoordinate2D] {
+        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid,
+                                              count: pointCount)
+
+        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
+
+        return coords
     }
 }

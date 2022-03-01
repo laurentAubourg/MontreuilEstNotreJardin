@@ -12,7 +12,5 @@ class PoiAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.info = info
         self.category = category
-        
     }
-    
 }

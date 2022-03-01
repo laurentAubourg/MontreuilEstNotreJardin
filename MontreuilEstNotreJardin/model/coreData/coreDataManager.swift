@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 final class CoreDataManager {
     
     // MARK: - Properties
@@ -16,12 +15,7 @@ final class CoreDataManager {
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
-    
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        self.managedObjectContext = coreDataStack.mainContext
-        
-    }
+    //MARK: - return all categories
     
     var categories: [Category] {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
@@ -30,6 +24,9 @@ final class CoreDataManager {
         guard let categories = try? managedObjectContext.fetch(request) else {return [] }
         return categories
     }
+    
+    //MARK: - return all the POI
+    
     var pois: [Poi] {
         let request: NSFetchRequest<Poi> = Poi.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -37,6 +34,8 @@ final class CoreDataManager {
         guard let pois = try? managedObjectContext.fetch(request) else {return [] }
         return pois
     }
+    
+    //MARK: return the list oh the selectes categories
     
     var selectedCategories:[Category]?{
         
@@ -46,6 +45,9 @@ final class CoreDataManager {
         let  selectedCategories = try! managedObjectContext.fetch(request)
         return selectedCategories
     }
+    
+    //MARK: return the list oh havorit POI
+    
     var favoritesPois:[Poi]{
         let request: NSFetchRequest<Poi> = Poi.fetchRequest()
         let predicate = NSPredicate(format:"favorit == %@",NSNumber(value: true))
@@ -54,6 +56,12 @@ final class CoreDataManager {
         return selectedPoi
         
     }
+    
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
+        self.managedObjectContext = coreDataStack.mainContext
+    }
+    
     // MARK: - Manage  Categories
     
     func addCategorie(name: String,nbRecords:Int32,state:String) {
@@ -63,35 +71,46 @@ final class CoreDataManager {
         categorie.icon = getCategoryPinIcon(name)
         categorie.nbRecords = nbRecords
         categorie.state = state
-        
         coreDataStack.saveContext()
-        
     }
+    
+    //MARK: - remove all the categories in gategory entitie
+    
     func deleteAllcategories() {
         categories.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
         
     }
+    
+    //MARK: - remove one categoriy in gategory entitie
+    
     func deletecategorie(elem:Category) {
         managedObjectContext.delete(elem)
         coreDataStack.saveContext()
         
     }
+    
+    //MARK: - set a category selected
+    
     func selectCategory(_ category:Category){
         category.selected = true
         coreDataStack.saveContext()
     }
+    
+    //MARK: - unset a category selected
+    
     func unselectCategory(_ category:Category){
         category.selected = false
         coreDataStack.saveContext()
         
     }
+    
+    //MARK: - unset all categories selected
+    
     func unselectAllCategory(){
         for category in categories{
             unselectCategory(category)
         }
-        
-        
     }
     
     // MARK: - Manage  Point of Interest
@@ -124,6 +143,8 @@ final class CoreDataManager {
         }
     }
    
+    //MARK: - Retrieves a category by its longitude and latitude
+    
     func getPoiByLocation(longitude:Double,latitude:Double)->Poi?{
         let request: NSFetchRequest<Poi> = Poi.fetchRequest()
         let predicate = NSPredicate(format: "longitude = %@ AND latitude = %@", NSNumber(value: longitude), NSNumber(value: latitude))
@@ -135,20 +156,26 @@ final class CoreDataManager {
        
     }
    
+    //MARK: - set a POI favorit atribute in POI entitie
+    
     func addPoiToFavorit(poi:Poi?){
         guard poi != nil else{return}
         poi!.favorit = true
         coreDataStack.saveContext()
     }
+    
+    //MARK: - unset a POI favorit atribute in POI entitie
+    
     func removePoiToFavorit(poi:Poi?){
         guard poi != nil else{return}
         poi!.favorit = false
         coreDataStack.saveContext()
     }
+    
     //MARK: - return rhe pin icon nome of a category
     
     func getCategoryPinIcon(_ poiCategory:String)-> String{
-        var pinIcon = ""
+    
         let dicIcon=["Arbre à fruits comestibles":  "fruitTree",
                      "Espace adopté":"adoptedPin",
                      "Espace adopté (ophm)":"adoptedPin",
@@ -166,6 +193,8 @@ final class CoreDataManager {
                      "jardin associatif des murs à pêches":"associatifGarden",
                      "default":  "default"
         ]
+        //MARK: retrieve the icon of the category
+        
         guard let pinIcon =  dicIcon[poiCategory] else{
             return dicIcon["default"]! }
         return pinIcon

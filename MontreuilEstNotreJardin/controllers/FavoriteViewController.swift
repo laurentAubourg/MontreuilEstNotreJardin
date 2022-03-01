@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+class FavoritViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     private var coreDataManager: CoreDataManager?
@@ -36,7 +36,7 @@ class FavoriteViewController: UIViewController {
 
 //MARK: - -------- UITableViewDelegate Extension ---------------
 
-extension FavoriteViewController:UITableViewDelegate {
+extension FavoritViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let poi = favoritePois[indexPath.row]
@@ -47,12 +47,11 @@ extension FavoriteViewController:UITableViewDelegate {
         guard  let annotation = delegate?.createAnotation(poi: poi,category: category) else{return}
         delegate?.addAnnotation(annotation:annotation)
     }
-    
 }
 
 //MARK: -  -------- TableViewDataSource Extension ---------------
 
-extension  FavoriteViewController: UITableViewDataSource {
+extension  FavoritViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favoritePois.count == 0 {
             self.tableView.setEmptyMessage("Aucun favoris enregistré")

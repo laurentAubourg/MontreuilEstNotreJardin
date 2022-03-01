@@ -16,7 +16,6 @@ extension URLSession {
   
     func  dataTask<T: Decodable>(with  url: URL, callback: @escaping (Result<T, NetworkError>) -> Void) {
         dataTask(with: url) { data, response, error in
-           print ("datatask \(url)")
             guard let data = data, error == nil else {
                 callback(.failure(.noData))
                 return

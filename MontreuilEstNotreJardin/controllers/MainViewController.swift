@@ -15,12 +15,14 @@ protocol MapkitDelegate{
 }
 final class MainViewController: UIViewController{
     
-    
-    
     // MARK: - @IBOUTLETS
     
-    @IBOutlet weak var mapSegmentControl: UISegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pthBtn: UIButton!
+    @IBOutlet weak var pathTableView: UITableView!
+    @IBOutlet weak var categorieTableView: UITableView!
+    @IBOutlet weak var pathView: UIView!
+    @IBOutlet weak var pathLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pathTrailingConstraint           : NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTrailingConstraint           : NSLayoutConstraint!
@@ -32,8 +34,11 @@ final class MainViewController: UIViewController{
     var coreDataManager: CoreDataManager?
     private var currentCategoryRank = 0
     private let reuseIdentifier = "cell"
+    private let reuseIdentifierPath = "cellPath"
     private var menuOut = false
-    
+    private var pathOut = false
+    var pathInstruction: Array<String> = []
+    var pathCoordinate :Array<CLLocationCoordinate2D> = []
     //MARK: -Mapkit extension properties
     
     let locationBase = CLLocation(latitude:48.863812, longitude: 2.448451)
@@ -47,127 +52,48 @@ final class MainViewController: UIViewController{
         super.viewDidLoad()
         // tableView
         let nib = UINib(nibName: "MenuTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        categorieTableView.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        // pathTableView
+        let nibPath = UINib(nibName: "InstructionsTableViewCell", bundle: nil)
+        pathTableView.register(nibPath, forCellReuseIdentifier: reuseIdentifierPath)
         //coreData
         guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         coreDataManager = CoreDataManager(coreDataStack:appdelegate.coreDataStack)
         //menu
         closeMenu()
+        //PATH
+        closePath()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.closeMenu))
         NotificationCenter.default.addObserver(self, selector: #selector(self.closeMenu), name: UIDevice.orientationDidChangeNotification, object: nil)
         mapView.addGestureRecognizer(tap)
         //mapKit
         mapKitInit()
-     
-        
     }
-  
+    
     //MARK: - ------------- METHODS ------------------------------
     
-    //mARK: - Load Category if it is not already done
+    //MARK: - Load Category if it is not already done
     
     override func viewDidAppear(_ animated: Bool)        {
         if coreDataManager?.categories.count == 0 {
-            loadCategories()
-            tableView.delegate = self
-            tableView.dataSource = self
+            categorieTableView.delegate = self
+            categorieTableView.dataSource = self
+            pathTableView.delegate = self
+            pathTableView.dataSource = self
         }
     }
     
     //MARK: Set selected attribute true in the Category entity
-   
-   func categoryIsSelected(_ rank:Int){
-       coreDataManager?.selectCategory((coreDataManager?.categories[rank])!)
-   }
-   
-   //MARK: set selected attribute false in the Category entity
-   
-   func categoryIsUnselected(_ rank:Int){
-       coreDataManager?.unselectCategory((coreDataManager?.categories[rank])!)
-   }
-    //MARK: - ------------------ DATASET METHOD'S ---------------------
     
-    //MARK: Load  facets JSON and maj coreData Category entity
-    
-    private func loadCategories(){
-        dataSetService.getFacets(callback:{ result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success( let data):
-                    //   self?.activityIndicator.isHidden = false
-                    for facet in data.facets{
-                        
-                        if facet.name == "categorie" {
-                            let categories = facet.facets
-                            for categorie in categories{
-                                self!.coreDataManager?.addCategorie(name: categorie.name, nbRecords: Int32(categorie.nbRecords),state:categorie.state)
-                            }
-                          //  if (withPoi == true){
-                                self!.loadPoi()
-                         //   }
-                        }
-                        continue
-                    }
-                    
-                    break
-                case .failure(let error):
-                    self?.presentAlert(title: "Error", message:"The facets download failed.:\(error)")
-                }}
-        })
-    }
-    // MARK: Load  Poi JSON and maj coreData Poi entity for all categories
-    
-    func loadPoi(){
-        
-        let categories = coreDataManager?.categories as [Category]?
-        guard categories != nil else{return}
-        let categorie = coreDataManager?.categories[currentCategoryRank]
-        guard categorie != nil else{return}
-        guard categorie!.name != nil else{return}
-        let nbRecords:Int32 = categorie!.nbRecords
-        let nameCategory = categorie!.name
-        dataSetService.getPoi(for: nameCategory! , nbRecords:Int(nbRecords),  callback:{ [weak self] result in
-            DispatchQueue.main.async { [self] in
-                switch result {
-                case .success( let data):
-                    self?.coreDataManager?.addPoi(categorie: categorie!, pois: data.records)
-                    break
-                case .failure(let error):
-                    self?.presentAlert(title: "Error", message:"The Poi records download failed.:\(error)")
-                }
-            }
-            if categories!.count >  self!.currentCategoryRank+1{
-                
-                self?.currentCategoryRank += 1
-                self?.loadPoi()
-            }else{
-                DispatchQueue.main.async {
-                    //  activityIndicator.stopAnimating()
-                    self?.presentAlert(title: "Info", message:"DataIs Loaded.!")
-                    
-                }
-                
-                
-            }
-        })
-        
-        return
+    func categoryIsSelected(_ rank:Int){
+        coreDataManager?.selectCategory((coreDataManager?.categories[rank])!)
     }
     
+    //MARK: set selected attribute false in the Category entity
     
-    //MARK: clean Category Entities and reLoad  facets JSON and maj coreData Category entity
-    
-    private func reloadCategories(withPoi:Bool = false){
-        //   activityIndicator.stopAnimating()
-        coreDataManager?.deleteAllcategories()
-      //  coreDataManager?.deleteAllpois()
-        loadCategories()
+    func categoryIsUnselected(_ rank:Int){
+        coreDataManager?.unselectCategory((coreDataManager?.categories[rank])!)
     }
-   
-  
-  
-    
-  
 }
 //MARK: - ----------------- MENU UITableView DELEGATE EXTENSION
 
@@ -175,41 +101,64 @@ final class MainViewController: UIViewController{
 
 extension MainViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let category = coreDataManager?.categories[indexPath.row] else{return}
-      if(category.selected == true){
-            coreDataManager?.unselectCategory(category)
-        }else{
-            coreDataManager?.selectCategory(category)
+        switch tableView{
+        case categorieTableView:
+            guard let category = coreDataManager?.categories[indexPath.row] else{return}
+            if(category.selected == true){
+                coreDataManager?.unselectCategory(category)
+            }else{
+                coreDataManager?.selectCategory(category)
+            }
+            tableView.reloadData()
+        case pathTableView:
+            let  regionLongitudalMeter = 10.0
+            let  regionLmatitudalMeter = 10.0
+            let coordinRegion = MKCoordinateRegion(center:pathCoordinate[indexPath.row], latitudinalMeters:regionLongitudalMeter,longitudinalMeters:regionLmatitudalMeter)
+            mapView.setRegion(coordinRegion, animated: true)
+                       
+            closePath()
+        default:   tableView.reloadData()
         }
-        tableView.reloadData()
-        
-    }
-    
+    }   
 }
 
 //MARK: -  -------- TableViewDataSource Extension ---------------
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch tableView{
+        case categorieTableView:
+            return (coreDataManager?.categories.count) ?? 0
+        case pathTableView:
+            return self.pathInstruction.count
+        default: return 0
+        }
         
-        return (coreDataManager?.categories.count) ?? 0
     }
     
     // MARK: - Filling the tableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = coreDataManager?.categories[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as! MenuTableViewCell
-        cell.delegate = self
         
-        cell.titleLab.text = item!.name
-        cell.checkBoxBtn.tag = indexPath.row
-        cell.checkBoxBtn.isSelected = ((item?.selected) == true)
-        cell.textLabel?.textColor = UIColor.white
-        
-        return cell
+        switch tableView{
+        case self.categorieTableView:
+            let item = coreDataManager?.categories[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)! as! MenuTableViewCell
+            cell.delegate = self
+            cell.titleLab.text = item!.name
+            cell.checkBoxBtn.tag = indexPath.row
+            cell.checkBoxBtn.isSelected = ((item?.selected) == true)
+            cell.textLabel?.textColor = UIColor.white
+            return cell
+        case self.pathTableView:
+            let item = pathInstruction[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierPath)! as! InstructionsTableViewCell
+            cell.titleLab.text = item
+            return cell
+        default: let cell =   UITableViewCell()
+            return cell
+        }
     }
-    
 }
 
 // MARK: - ---------  MenuDelegate extension -----------------
@@ -236,30 +185,58 @@ extension  MainViewController:MenuDelegate{
         }
         coreDataManager?.addPoiToFavorit(poi:currentPoi)
     }
-  
+    
     
     //MARK: - hide menu
     
     @objc func closeMenu(){
-      
-       menuLeadingConstraint.constant = -(view.frame.width*2)
+        
+        menuLeadingConstraint.constant = -(view.frame.width*2)
         menuTrailingConstraint.constant = view.frame.width*2
         menuOut = true
         if removeAnnotatioOnTap == true
-         {
-        addSelectedPoiAnnotation()
-       }
+        {
+            addSelectedPoiAnnotation()
+        }
+        
     }
     
     //MARK: - display menu
     
     func openMenu(){
         
-        
         menuLeadingConstraint.constant = 5
         menuTrailingConstraint.constant = view.frame.width/2
-        
         menuOut = false
     }
-  
+    //MARK: - hide Path
+    
+    @objc func closePath(){
+        
+        pathLeadingConstraint.constant = -(view.frame.width)
+        pathTrailingConstraint.constant = view.frame.width
+        pathOut = true
+        
+    }
+    
+    //MARK: - display path
+    
+    func openpath(){
+        
+        pathLeadingConstraint.constant = 5
+        pathTrailingConstraint.constant = view.frame.width/2
+        pathOut = false
+    }
+    
+    //MARK: - when pathBtn is ta^êd cole ot open the path panet
+    
+    @IBAction func pthBtnTapped(_ sender: Any) {
+        if pathOut {
+            pthBtn.isSelected = true
+            openpath()
+        }else{
+            pthBtn.isSelected = false
+            closePath()
+        }
+    }
 }
