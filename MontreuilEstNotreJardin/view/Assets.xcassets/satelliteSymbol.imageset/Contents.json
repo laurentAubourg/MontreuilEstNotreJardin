@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "satelliteSymbol.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "satelliteSymbol.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

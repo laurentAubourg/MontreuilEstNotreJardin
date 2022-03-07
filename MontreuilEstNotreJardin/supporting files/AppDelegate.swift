@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-@main
+     @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var coreDataStack = CoreDataStack(modelName: "MontreuilEstNotreJardin")
     private var coreDataManager: CoreDataManager? = nil
@@ -83,6 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
            })
     }
+    
+    
+    
     //MARK: clean Category Entities and reLoad  facets JSON and maj coreData Category entity
    
    func reloadCategories(withPoi:Bool = false){

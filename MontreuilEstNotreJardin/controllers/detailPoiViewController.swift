@@ -23,10 +23,10 @@ class detailPoiViewController: UIViewController {
         super.viewDidLoad()
         guard poi != nil else {return}
         let title = poi!.name
-        let address = " adresse: \(poi!.address ?? "NC.")"
-        let email = " email: \(poi!.email ?? "NC.")"
-        let telephon = " téléphone: \(poi!.telephon ?? "NC.")"
-        let info = "\(address) \n \n\(email) \n\(telephon)!"
+        let address = "🔏 : \(poi!.address ?? "NC.")"
+        let email = " 📭: \(poi!.email ?? "NC.")"
+        let telephon = " 📞 : \(poi!.telephon ?? "NC.")"
+        let info = "\(address) \n \(email) \n\(telephon)!"
         nameLab.text = title
         infosLab.text = info
         if (poi?.favorit == true){
@@ -41,7 +41,6 @@ class detailPoiViewController: UIViewController {
     @IBAction func favoritBtnTapped(_ sender: Any) {
         delegate!.addPoiToFavorit()
         if (poi?.favorit == true){
-            
             favoriteBtn.setImage(UIImage(named: "favoriteOn"), for: .normal)
         }else{
             favoriteBtn.setImage(UIImage(named: "favoriteOff"), for: .normal)
